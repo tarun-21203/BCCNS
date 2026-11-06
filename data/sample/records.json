@@ -1,0 +1,662 @@
+[
+  {
+    "id": "bccns-001",
+    "title": "African Nova Scotians in the Age of Slavery and Abolition",
+    "description": "Virtual exhibit from Nova Scotia Archives exploring the lives of early Black settlers in Nova Scotia through digitized government documents, letters, newspaper articles, maps, and works of art, covering 1749 to 1834.",
+    "people": [],
+    "places": [
+      "Halifax",
+      "Nova Scotia"
+    ],
+    "communities": [
+      "Africville",
+      "Preston",
+      "Birchtown"
+    ],
+    "subjects": [
+      "slavery",
+      "abolition",
+      "settlement"
+    ],
+    "date_display": "1749-1834",
+    "start_date": 1749,
+    "end_date": 1834,
+    "date_approximate": false,
+    "resource_type": "exhibit",
+    "source_id": "ns_archives",
+    "source_institution": "Nova Scotia Archives",
+    "original_id": "African Nova Scotians in the Age of Slavery and Abolition",
+    "original_url": "https://archives.novascotia.ca/african-heritage/",
+    "digitization_status": "digitized",
+    "access_information": "View online at Nova Scotia Archives.",
+    "access_info_level": "record",
+    "original_terms": [],
+    "search_terms": [],
+    "content_note": null,
+    "derived_fields": {
+      "communities": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      },
+      "places": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      }
+    },
+    "harvested_at": "2026-11-05T12:00:00Z",
+    "field_mapping": "mappings/ns_archives.json",
+    "relationships": []
+  },
+  {
+    "id": "bccns-002",
+    "title": "African Nova Scotian Diaspora",
+    "description": "Digitized and searchable government documents relating to early African Nova Scotian settlement patterns, including records of Black Refugees who arrived at the close of the War of 1812.",
+    "people": [],
+    "places": [
+      "Nova Scotia",
+      "Preston",
+      "Hammonds Plains"
+    ],
+    "communities": [
+      "Preston",
+      "Hammonds Plains"
+    ],
+    "subjects": [
+      "Black Refugees",
+      "War of 1812",
+      "settlement"
+    ],
+    "date_display": "1813-1816",
+    "start_date": 1813,
+    "end_date": 1816,
+    "date_approximate": false,
+    "resource_type": "collection",
+    "source_id": "ns_archives",
+    "source_institution": "Nova Scotia Archives",
+    "original_id": "African Nova Scotian Diaspora",
+    "original_url": "https://archives.novascotia.ca/african-heritage/",
+    "digitization_status": "digitized",
+    "access_information": "View online at Nova Scotia Archives.",
+    "access_info_level": "record",
+    "original_terms": [
+      "Black Refugees"
+    ],
+    "search_terms": [
+      "Black Refugees"
+    ],
+    "content_note": null,
+    "derived_fields": {
+      "communities": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      },
+      "places": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      }
+    },
+    "harvested_at": "2026-11-05T12:00:00Z",
+    "field_mapping": "mappings/ns_archives.json",
+    "relationships": []
+  },
+  {
+    "id": "bccns-003",
+    "title": "Viola Desmond legal records",
+    "description": "Surviving legal documents from the Magistrate's Court and the Supreme Court relating to Viola Desmond, an African Nova Scotian businesswoman whose 1946 case marked a watershed for civil rights in Canada, with contemporary newspaper coverage.",
+    "people": [
+      "Viola Desmond"
+    ],
+    "places": [
+      "New Glasgow",
+      "Halifax",
+      "Nova Scotia"
+    ],
+    "communities": [],
+    "subjects": [
+      "civil rights",
+      "legal records",
+      "discrimination"
+    ],
+    "date_display": "1946",
+    "start_date": 1946,
+    "end_date": 1946,
+    "date_approximate": false,
+    "resource_type": "document",
+    "source_id": "ns_archives",
+    "source_institution": "Nova Scotia Archives",
+    "original_id": "Viola Desmond records",
+    "original_url": "https://archives.novascotia.ca/african-heritage/",
+    "digitization_status": "partially_digitized",
+    "access_information": "View selected records online at Nova Scotia Archives; contact the Archives for the full file.",
+    "access_info_level": "institution",
+    "original_terms": [],
+    "search_terms": [],
+    "content_note": null,
+    "derived_fields": {
+      "communities": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      },
+      "places": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      }
+    },
+    "harvested_at": "2026-11-05T12:00:00Z",
+    "field_mapping": "mappings/ns_archives.json",
+    "relationships": []
+  },
+  {
+    "id": "bccns-004",
+    "title": "Nominal Roll, No. 2 Construction Battalion, March 1917",
+    "description": "Fully searchable nominal roll of officers, non-commissioned officers, and men of No. 2 Construction Battalion, providing biographical and family information about enlisted men and officers.",
+    "people": [],
+    "places": [
+      "Nova Scotia",
+      "Halifax"
+    ],
+    "communities": [
+      "Africville",
+      "Preston",
+      "Cherry Brook"
+    ],
+    "subjects": [
+      "First World War",
+      "military service",
+      "No. 2 Construction Battalion"
+    ],
+    "date_display": "March 1917",
+    "start_date": 1917,
+    "end_date": 1917,
+    "date_approximate": false,
+    "resource_type": "register",
+    "source_id": "ns_archives",
+    "source_institution": "Nova Scotia Archives",
+    "original_id": "Nominal Roll, No. 2 Construction Battalion",
+    "original_url": "https://archives.novascotia.ca/african-heritage/",
+    "digitization_status": "digitized",
+    "access_information": "View online at Nova Scotia Archives.",
+    "access_info_level": "record",
+    "original_terms": [],
+    "search_terms": [],
+    "content_note": null,
+    "derived_fields": {
+      "communities": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      },
+      "places": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      }
+    },
+    "harvested_at": "2026-11-05T12:00:00Z",
+    "field_mapping": "mappings/ns_archives.json",
+    "relationships": []
+  },
+  {
+    "id": "bccns-005",
+    "title": "Book of Negroes, 1783",
+    "description": "Register of Black people who evacuated New York on British ships to Nova Scotia from April to November 1783, following the American Revolution. Library and Archives Canada holds a searchable database of 2,831 references from the register.",
+    "people": [],
+    "places": [
+      "New York",
+      "Nova Scotia",
+      "Birchtown",
+      "Shelburne"
+    ],
+    "communities": [
+      "Birchtown",
+      "Shelburne"
+    ],
+    "subjects": [
+      "Black Loyalists",
+      "American Revolution",
+      "migration"
+    ],
+    "date_display": "1783",
+    "start_date": 1783,
+    "end_date": 1783,
+    "date_approximate": false,
+    "resource_type": "register",
+    "source_id": "lac",
+    "source_institution": "Library and Archives Canada",
+    "original_id": "Book of Negroes, MG23 B1, microfilm M-369",
+    "original_url": "https://www.bac-lac.gc.ca/eng/discover/military-heritage/loyalists/book-of-negroes/Pages/introduction.aspx",
+    "digitization_status": "digitized",
+    "access_information": "Search the database and view the digitized register through Library and Archives Canada.",
+    "access_info_level": "record",
+    "original_terms": [
+      "Book of Negroes"
+    ],
+    "search_terms": [
+      "Book of Negroes"
+    ],
+    "content_note": null,
+    "derived_fields": {
+      "communities": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      },
+      "places": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      }
+    },
+    "harvested_at": "2026-11-05T12:00:00Z",
+    "field_mapping": "mappings/lac.json",
+    "relationships": []
+  },
+  {
+    "id": "bccns-006",
+    "title": "Carleton Papers, British Headquarters Papers, 1774-1783",
+    "description": "British Headquarters Papers, New York, including the Carleton Papers. Library and Archives Canada holds a microfilm copy and a searchable index covering loyalist soldiers and civilian refugees.",
+    "people": [],
+    "places": [
+      "New York",
+      "Nova Scotia"
+    ],
+    "communities": [
+      "Birchtown",
+      "Shelburne"
+    ],
+    "subjects": [
+      "Black Loyalists",
+      "loyalists",
+      "military records"
+    ],
+    "date_display": "1774-1783",
+    "start_date": 1774,
+    "end_date": 1783,
+    "date_approximate": false,
+    "resource_type": "collection",
+    "source_id": "lac",
+    "source_institution": "Library and Archives Canada",
+    "original_id": "British Headquarters Papers, MG23 B1",
+    "original_url": "https://www.bac-lac.gc.ca/eng/discover/military-heritage/loyalists/book-of-negroes/Pages/introduction.aspx",
+    "digitization_status": "partially_digitized",
+    "access_information": "Search the index through Library and Archives Canada; consult the access options on the source page for copies and microfilm.",
+    "access_info_level": "institution",
+    "original_terms": [],
+    "search_terms": [],
+    "content_note": null,
+    "derived_fields": {
+      "communities": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      },
+      "places": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      }
+    },
+    "harvested_at": "2026-11-05T12:00:00Z",
+    "field_mapping": "mappings/lac.json",
+    "relationships": []
+  },
+  {
+    "id": "bccns-007",
+    "title": "Muster Book of Free Black Settlement of Birchtown, Port Roseway, 1784",
+    "description": "Register created in the summer of 1784 listing the names and ages of Black men, women, and children who established the settlement of Birchtown, near Shelburne, Nova Scotia, with details of professions, military rank, and family ties where recorded.",
+    "people": [],
+    "places": [
+      "Birchtown",
+      "Port Roseway",
+      "Shelburne",
+      "Nova Scotia"
+    ],
+    "communities": [
+      "Birchtown",
+      "Shelburne"
+    ],
+    "subjects": [
+      "Black Loyalists",
+      "settlement",
+      "muster roll"
+    ],
+    "date_display": "1784",
+    "start_date": 1784,
+    "end_date": 1784,
+    "date_approximate": false,
+    "resource_type": "register",
+    "source_id": "lac",
+    "source_institution": "Library and Archives Canada",
+    "original_id": "Muster Book of Free Black Settlement of Birchtown, Port Roseway, R16987, MG9 B9-14",
+    "original_url": "https://heritage.canadiana.ca/view/oocihm.lac_reel_h984",
+    "digitization_status": "digitized",
+    "access_information": "View the digitized register through Canadiana Heritage, linked from Library and Archives Canada.",
+    "access_info_level": "record",
+    "original_terms": [],
+    "search_terms": [],
+    "content_note": null,
+    "derived_fields": {
+      "communities": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      },
+      "places": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      }
+    },
+    "harvested_at": "2026-11-05T12:00:00Z",
+    "field_mapping": "mappings/lac.json",
+    "relationships": []
+  },
+  {
+    "id": "bccns-008",
+    "title": "Black Loyalist Refugees, 1782-1807",
+    "description": "Records relating to Black Loyalist refugees who arrived in Nova Scotia between 1782 and 1807, held in the Port Roseway Associates series at Library and Archives Canada.",
+    "people": [],
+    "places": [
+      "Shelburne",
+      "Port Roseway",
+      "Nova Scotia"
+    ],
+    "communities": [
+      "Birchtown",
+      "Shelburne"
+    ],
+    "subjects": [
+      "Black Loyalists",
+      "refugees",
+      "settlement"
+    ],
+    "date_display": "1782-1807",
+    "start_date": 1782,
+    "end_date": 1807,
+    "date_approximate": false,
+    "resource_type": "collection",
+    "source_id": "lac",
+    "source_institution": "Library and Archives Canada",
+    "original_id": "Port Roseway Associates series, R16987",
+    "original_url": "https://heritage.canadiana.ca/view/oocihm.lac_reel_h984",
+    "digitization_status": "partially_digitized",
+    "access_information": "View digitized material through Canadiana Heritage; consult Library and Archives Canada for the full series.",
+    "access_info_level": "institution",
+    "original_terms": [],
+    "search_terms": [],
+    "content_note": null,
+    "derived_fields": {
+      "communities": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      },
+      "places": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      }
+    },
+    "harvested_at": "2026-11-05T12:00:00Z",
+    "field_mapping": "mappings/lac.json",
+    "relationships": []
+  },
+  {
+    "id": "bccns-011",
+    "title": "Africville community records",
+    "description": "Photographs, oral histories, and documents relating to Africville, a historic Black community in Halifax, held across Nova Scotia Archives and community collections.",
+    "people": [],
+    "places": [
+      "Africville",
+      "Halifax",
+      "Nova Scotia"
+    ],
+    "communities": [
+      "Africville"
+    ],
+    "subjects": [
+      "Africville",
+      "community history",
+      "oral history"
+    ],
+    "date_display": "c. 1840-1970",
+    "start_date": 1840,
+    "end_date": 1970,
+    "date_approximate": true,
+    "resource_type": "collection",
+    "source_id": "ns_archives",
+    "source_institution": "Nova Scotia Archives",
+    "original_id": "Africville community records",
+    "original_url": "https://archives.novascotia.ca/african-heritage/",
+    "digitization_status": "partially_digitized",
+    "access_information": "View selected records online at Nova Scotia Archives; contact the Archives for material held on site.",
+    "access_info_level": "institution",
+    "original_terms": [],
+    "search_terms": [],
+    "content_note": null,
+    "derived_fields": {
+      "communities": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      },
+      "places": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      }
+    },
+    "harvested_at": "2026-11-05T12:00:00Z",
+    "field_mapping": "mappings/ns_archives.json",
+    "relationships": []
+  },
+  {
+    "id": "bccns-012",
+    "title": "Helen Creighton: African Nova Scotian songs, Cherry Brook",
+    "description": "Audio recordings collected by folklorist Helen Creighton, including songs performed by William Riley and others at Cherry Brook, Halifax County, in 1943, held by Nova Scotia Archives.",
+    "people": [
+      "William Riley",
+      "Helen Creighton"
+    ],
+    "places": [
+      "Cherry Brook",
+      "Halifax",
+      "Nova Scotia"
+    ],
+    "communities": [
+      "Cherry Brook"
+    ],
+    "subjects": [
+      "music",
+      "folklore",
+      "oral history"
+    ],
+    "date_display": "1943",
+    "start_date": 1943,
+    "end_date": 1943,
+    "date_approximate": false,
+    "resource_type": "audio",
+    "source_id": "ns_archives",
+    "source_institution": "Nova Scotia Archives",
+    "original_id": "Helen Creighton audio reels, Cherry Brook",
+    "original_url": "https://archives.novascotia.ca/african-heritage/",
+    "digitization_status": "partially_digitized",
+    "access_information": "Search the Helen Creighton collection at Nova Scotia Archives; contact the Archives for access to specific reels.",
+    "access_info_level": "institution",
+    "original_terms": [],
+    "search_terms": [],
+    "content_note": null,
+    "derived_fields": {
+      "communities": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      },
+      "places": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      }
+    },
+    "harvested_at": "2026-11-05T12:00:00Z",
+    "field_mapping": "mappings/ns_archives.json",
+    "relationships": []
+  },
+  {
+    "id": "bccns-013",
+    "title": "Dalhousie University Institute of Public Affairs fonds (UA-26)",
+    "description": "Finding aid for the Institute of Public Affairs fonds, including projects and working groups such as the Africville Relocation Project. Held at Dalhousie University Archives, Killam Memorial Library, Halifax.",
+    "people": [
+      "Guy Henson"
+    ],
+    "places": [
+      "Halifax",
+      "Nova Scotia"
+    ],
+    "communities": [
+      "Africville"
+    ],
+    "subjects": [
+      "Africville",
+      "relocation",
+      "Institute of Public Affairs"
+    ],
+    "date_display": "1890-1996",
+    "start_date": 1890,
+    "end_date": 1996,
+    "date_approximate": false,
+    "resource_type": "collection",
+    "source_id": "dal_archives",
+    "source_institution": "Dalhousie University Archives",
+    "original_id": "UA-26",
+    "original_url": "https://findingaids.library.dal.ca/downloads/dalhousie-university-institute-of-public-affairs-fonds.pdf",
+    "digitization_status": "partially_digitized",
+    "access_information": "Finding aid available online; records held on site at Dalhousie University Archives, Killam Memorial Library, Halifax.",
+    "access_info_level": "institution",
+    "original_terms": [],
+    "search_terms": [],
+    "content_note": null,
+    "derived_fields": {
+      "communities": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      },
+      "places": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      }
+    },
+    "harvested_at": "2026-11-05T12:00:00Z",
+    "field_mapping": "mappings/dal_archives.json",
+    "relationships": []
+  },
+  {
+    "id": "bccns-014",
+    "title": "Guy Henson fonds (MS-2-373)",
+    "description": "Fonds of Guy Henson (1910-1978), director of the Institute of Public Affairs (1957-1976), whose work included the Africville Relocation Project.",
+    "people": [
+      "Guy Henson"
+    ],
+    "places": [
+      "Halifax",
+      "Nova Scotia"
+    ],
+    "communities": [
+      "Africville"
+    ],
+    "subjects": [
+      "Africville",
+      "relocation",
+      "education"
+    ],
+    "date_display": "1933-1978",
+    "start_date": 1933,
+    "end_date": 1978,
+    "date_approximate": false,
+    "resource_type": "collection",
+    "source_id": "dal_archives",
+    "source_institution": "Dalhousie University Archives",
+    "original_id": "MS-2-373",
+    "original_url": "https://findingaids.library.dal.ca/downloads/guy-henson-fonds.pdf",
+    "digitization_status": "partially_digitized",
+    "access_information": "Finding aid available online; records held on site at Dalhousie University Archives, Killam Memorial Library, Halifax.",
+    "access_info_level": "institution",
+    "original_terms": [],
+    "search_terms": [],
+    "content_note": null,
+    "derived_fields": {
+      "communities": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      },
+      "places": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      }
+    },
+    "harvested_at": "2026-11-05T12:00:00Z",
+    "field_mapping": "mappings/dal_archives.json",
+    "relationships": []
+  },
+  {
+    "id": "bccns-015",
+    "title": "Photograph of a train running through Africville",
+    "description": "Photograph of a CN train passing through Halifax's Africville neighbourhood, used in Donald Clairmont's Africville Relocation Report. Source: Dalhousie University Photographic Collection, PC1, Box 42, Folder 11, Items 1-2.",
+    "people": [
+      "Donald Clairmont"
+    ],
+    "places": [
+      "Africville",
+      "Halifax",
+      "Nova Scotia"
+    ],
+    "communities": [
+      "Africville"
+    ],
+    "subjects": [
+      "Africville",
+      "relocation",
+      "photograph"
+    ],
+    "date_display": "[between 1950 and 1959]",
+    "start_date": 1950,
+    "end_date": 1959,
+    "date_approximate": true,
+    "resource_type": "photograph",
+    "source_id": "dal_archives",
+    "source_institution": "Dalhousie University Archives",
+    "original_id": "PC1, Box 42, Folder 11, Items 1-2",
+    "original_url": "https://digitalexhibits.library.dal.ca/items/show/674",
+    "digitization_status": "digitized",
+    "access_information": "View online at Dalhousie Libraries Digital Exhibits.",
+    "access_info_level": "record",
+    "original_terms": [],
+    "search_terms": [],
+    "content_note": null,
+    "derived_fields": {
+      "communities": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      },
+      "places": {
+        "method": "curated",
+        "by": "team",
+        "reviewed": true
+      }
+    },
+    "harvested_at": "2026-11-05T12:00:00Z",
+    "field_mapping": "mappings/dal_archives.json",
+    "relationships": []
+  }
+]
