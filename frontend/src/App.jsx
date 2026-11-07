@@ -1,14 +1,7 @@
-import { SearchRoutes, SiteHeader } from "./modules/search";
+import AppShell from "./shell/AppShell.jsx";
 
-// Dev-only wrapper. Member 5 replaces this with the shared application shell
-// and mounts <SearchRoutes /> under whichever path the shell chooses.
+// Shared application shell (Member 5). Modules are registered in
+// src/shell/modules.jsx.
 export default function App() {
-  return (
-    <div className="app">
-      <SiteHeader />
-      <main>
-        <SearchRoutes />
-      </main>
-    </div>
-  );
+  return <AppShell />;
 }
