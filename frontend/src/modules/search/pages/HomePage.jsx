@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getCommunities, getRecords } from "../api/searchApi.js";
 import { communityStats } from "../lib/communityStats.js";
 import CommunityMap from "../components/CommunityMap.jsx";
+import HowItWorks from "../components/HowItWorks.jsx";
 
 // Suggested searches. Each is checked against the sample records: a chip must
 // return results, so edit this list if the dataset changes.
@@ -29,10 +30,11 @@ export default function HomePage() {
   function onSubmit(e) {
     e.preventDefault();
     const q = text.trim();
-    navigate(q ? `/search?q=${encodeURIComponent(q)}` : "/search");
+    navigate(q ? `results?q=${encodeURIComponent(q)}` : "results");
   }
 
   return (
+    <>
     <section className="hero">
       <div className="hero-map" aria-label="Map of indexed Nova Scotia communities">
         {data && <CommunityMap communities={data.communities} statsByName={statsByName} />}
@@ -67,9 +69,16 @@ export default function HomePage() {
         <div className="chips">
           <span className="chips-label">Try</span>
           {TRY_CHIPS.map((c) => (
-            <Link key={c} className="chip" to={`/search?q=${encodeURIComponent(c)}`}>{c}</Link>
+            <Link key={c} className="chip" to={`results?q=${encodeURIComponent(c)}`}>{c}</Link>
           ))}
         </div>
+        <button
+          type="button"
+          className="scroll-cue"
+          onClick={() => document.getElementById("how")?.scrollIntoView({ behavior: "smooth" })}
+        >
+          How a thread is traced <span aria-hidden="true">↓</span>
+        </button>
       </div>
 
       <p className="hero-caption">
@@ -82,5 +91,7 @@ export default function HomePage() {
         )}
       </p>
     </section>
+    {data && <HowItWorks records={data.records} chips={TRY_CHIPS} />}
+    </>
   );
 }
