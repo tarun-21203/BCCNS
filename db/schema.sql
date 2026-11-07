@@ -13,7 +13,9 @@
 -- Tables: sources, records, record_people, record_places,
 -- record_communities, record_subjects, record_original_terms,
 -- record_search_terms, record_derived_fields, record_relationships,
--- communities, edges, crosswalk, crosswalk_historical_terms.
+-- communities, crosswalk, crosswalk_historical_terms.
+-- Relationships are derived from the records themselves (see
+-- GET /entities/{id}/relationships); there is no separate edges table.
 -- Views: v_record_search, v_coverage_by_institution,
 -- v_coverage_by_community.
 -- Only metadata and links are stored. No archival files are copied.
@@ -110,15 +112,6 @@ CREATE TABLE communities (
     longitude REAL,
     coordinates_approximate INTEGER NOT NULL DEFAULT 1 CHECK (coordinates_approximate IN (0, 1)),
     source TEXT
-);
-
-CREATE TABLE edges (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    from_entity TEXT NOT NULL,
-    from_type TEXT NOT NULL,
-    to_entity TEXT NOT NULL,
-    to_type TEXT NOT NULL,
-    source_record_id TEXT NOT NULL REFERENCES records(id)
 );
 
 CREATE TABLE crosswalk (
@@ -293,13 +286,6 @@ INSERT INTO communities VALUES ('Birchtown', 5, 3, 43.75, -65.37, 1, 'Government
 INSERT INTO communities VALUES ('Cherry Brook', 2, 1, 44.7, -63.47, 1, 'Government of Nova Scotia, African Nova Scotian Family Names by Region (https://data.novascotia.ca/datasets/kbzq-tfz7)');
 INSERT INTO communities VALUES ('Hammonds Plains', 1, 1, 44.7, -63.78, 1, 'Government of Nova Scotia, African Nova Scotian Family Names by Region (https://data.novascotia.ca/datasets/kbzq-tfz7)');
 INSERT INTO communities VALUES ('Shelburne', 4, 2, 43.76, -65.32, 1, 'Government of Nova Scotia, African Nova Scotian Family Names by Region (https://data.novascotia.ca/datasets/kbzq-tfz7)');
-INSERT INTO edges (from_entity, from_type, to_entity, to_type, source_record_id) VALUES ('Birchtown', 'community', 'bccns-007', 'record', 'bccns-007');
-INSERT INTO edges (from_entity, from_type, to_entity, to_type, source_record_id) VALUES ('Birchtown', 'community', 'bccns-005', 'record', 'bccns-005');
-INSERT INTO edges (from_entity, from_type, to_entity, to_type, source_record_id) VALUES ('bccns-005', 'record', 'bccns-007', 'record', 'bccns-005');
-INSERT INTO edges (from_entity, from_type, to_entity, to_type, source_record_id) VALUES ('Birchtown', 'community', 'Shelburne', 'place', 'bccns-007');
-INSERT INTO edges (from_entity, from_type, to_entity, to_type, source_record_id) VALUES ('Viola Desmond', 'person', 'bccns-003', 'record', 'bccns-003');
-INSERT INTO edges (from_entity, from_type, to_entity, to_type, source_record_id) VALUES ('Africville', 'community', 'bccns-011', 'record', 'bccns-011');
-INSERT INTO edges (from_entity, from_type, to_entity, to_type, source_record_id) VALUES ('Africville', 'community', 'bccns-001', 'record', 'bccns-001');
 INSERT INTO crosswalk VALUES ('Black Loyalist', 'Current term for people who arrived in Nova Scotia after the American Revolution and were recorded in the Book of Negroes and related registers.', 'draft for community review');
 INSERT INTO crosswalk_historical_terms VALUES ('Black Loyalist', 'Book of Negroes');
 INSERT INTO crosswalk_historical_terms VALUES ('Black Loyalist', 'Loyalist');
