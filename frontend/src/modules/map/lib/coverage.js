@@ -72,6 +72,8 @@ export function buildCoverage(communities, records) {
       longitude: c.longitude ?? null,
       coordinatesApproximate: c.coordinates_approximate !== false,
       citation: c.source || null,
+      region: c.region || null,
+      coordinatesSource: c.coordinates_source || null,
       knownCollections: c.known_collections || [],
       count: matched.length,
       records: matched,

@@ -121,7 +121,11 @@ export default function CommunityPanel({ row, rows, totalRecords, onClose }) {
         </p>
       )}
 
-      {row.coordinatesApproximate && <p className="sm-muted">Map location is approximate.</p>}
+      <p className="sm-muted">
+        {row.region && <>Region (per the Nova Scotia dataset): {row.region}. </>}
+        Map location is {row.coordinatesApproximate ? "approximate" : "as listed"}
+        {row.coordinatesSource ? <>; source: {row.coordinatesSource}</> : ""}.
+      </p>
     </aside>
   );
 }

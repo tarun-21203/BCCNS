@@ -28,7 +28,8 @@ export default function Legend({ citations }) {
       </p>
       {citations.length > 0 && (
         <p className="sm-muted">
-          Community names: {citations.join("; ")}. Map locations are approximate.
+          Community names: {citations.join("; ")}. Map locations are approximate; where noted on
+          a community, coordinates come from Wikidata (CC0).
         </p>
       )}
     </section>
