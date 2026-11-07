@@ -36,7 +36,7 @@ export default function HomePage() {
   return (
     <>
     <section className="hero">
-      <div className="hero-map" aria-label="Map of indexed Nova Scotia communities">
+      <div className="hero-map" role="region" aria-label="Map of indexed Nova Scotia communities">
         {data && <CommunityMap communities={data.communities} statsByName={statsByName} />}
         <div className="hero-scrim" aria-hidden="true" />
       </div>

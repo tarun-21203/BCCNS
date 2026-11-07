@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import AccessCard from "./AccessCard.jsx";
+import { getMappings } from "../api/searchApi.js";
 import { filterLocally } from "../lib/localSearch.js";
 
 const STEPS = [
@@ -88,12 +89,12 @@ function SearchDemo({ records, words, active }) {
   );
 }
 
-function CardDemo({ record }) {
+function CardDemo({ record, mapping }) {
   const [hl, setHl] = useState("");
   return (
     <div className="how-demo how-demo-card">
       <ul className="results how-card" data-hl={hl}>
-        <AccessCard record={record} index={0} />
+        <AccessCard record={record} mapping={mapping} index={0} />
       </ul>
       <ul className="how-notes" aria-label="What each part of the card tells you">
         {ANNOTATIONS.map((a) => (
@@ -145,6 +146,11 @@ export default function HowItWorks({ records, chips }) {
   const ref = useRef(null);
   const [inView, setInView] = useState(false);
   const [active, setActive] = useState(0);
+  const [mappings, setMappings] = useState({});
+
+  useEffect(() => {
+    getMappings().then((list) => setMappings(Object.fromEntries(list.map((m) => [m.source_id, m]))));
+  }, []);
 
   useEffect(() => {
     const el = ref.current;
@@ -216,7 +222,7 @@ export default function HowItWorks({ records, chips }) {
         <div id="how-panel" role="tabpanel" aria-labelledby={`how-tab-${active}`} className="how-panel" data-reveal>
           <p className="ac-label how-panel-label">Live preview · real indexed records</p>
           {active === 0 && <SearchDemo records={records} words={chips} active={inView} />}
-          {active === 1 && <CardDemo record={featured} />}
+          {active === 1 && <CardDemo record={featured} mapping={mappings[featured.source_id]} />}
           {active === 2 && <ChainDemo record={featured} />}
         </div>
       </div>

@@ -3,9 +3,11 @@
 .app > main { flex: 1; width: 100%; }
 /* Pages other than Search sit in a centred container; Search pages manage their own width. */
 .app > main > .tv,
+.app > main > .sm,
 .app > main > .placeholder { max-width: 1100px; margin: 0 auto; padding: 28px 32px 60px; }
 @media (max-width: 899px) {
   .app > main > .tv,
+  .app > main > .sm,
   .app > main > .placeholder { padding: 20px 16px 48px; }
 }
 .shell-footer {
