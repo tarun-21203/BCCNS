@@ -9,6 +9,11 @@
   --blue-wash: #e8eefa;
   --notice-bg: #fff6dc;
   --notice-line: #e2bd55;
+  /* Aliases: the shell and Thread View (Member 5) use these names. */
+  --text: var(--ink);
+  --border: var(--line);
+  --accent: var(--blue);
+  --notice-border: var(--notice-line);
   --font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
   font-family: var(--font);
@@ -155,9 +160,10 @@ a { color: inherit; }
 
 /* ---------- Small screens: stack text above the map ---------- */
 @media (max-width: 899px) {
-  .site-header { padding: 12px 16px; }
+  .site-header { padding: 10px 16px; flex-wrap: wrap; row-gap: 6px; }
   .brand-tag { display: none; }
-  .site-nav { gap: 14px; }
+  .site-nav { gap: 4px 16px; flex-wrap: wrap; font-size: 0.9rem; }
+  .site-nav a { font-size: 0.9rem; }
   .hero { min-height: 0; display: flex; flex-direction: column; }
   .hero-content { max-width: none; padding: 28px 16px 20px; }
   .hero-map { position: relative; order: 2; height: 62vh; min-height: 380px; }

@@ -7,19 +7,18 @@ import "./shell.css";
 export default function AppShell() {
   return (
     <div className="app">
-      <header className="app-header">
-        <div className="shell-bar">
-          <NavLink to="/" className="shell-brand">
-            THREADS <span className="shell-tagline">Black History Discovery</span>
-          </NavLink>
-          <nav aria-label="Main" className="shell-nav">
-            {MODULES.map((m) => (
-              <NavLink key={m.path} to={`/${m.path}`} className="shell-tab">
-                {m.label}
-              </NavLink>
-            ))}
-          </nav>
-        </div>
+      <header className="app-header site-header">
+        <NavLink to="/" className="brand" aria-label="THREADS home">
+          <span className="brand-name">THREADS</span>
+          <span className="brand-tag">Black history · Canadian archives</span>
+        </NavLink>
+        <nav aria-label="Main" className="site-nav">
+          {MODULES.map((m) => (
+            <NavLink key={m.path} to={`/${m.path}`}>
+              {m.label}
+            </NavLink>
+          ))}
+        </nav>
       </header>
       <main>
         <Routes>
