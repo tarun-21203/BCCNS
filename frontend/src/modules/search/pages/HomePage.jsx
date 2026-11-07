@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getCommunities, getRecords } from "../api/searchApi.js";
 import { communityStats } from "../lib/communityStats.js";
 import CommunityMap from "../components/CommunityMap.jsx";
 import HowItWorks from "../components/HowItWorks.jsx";
+import TransitionLink from "../components/TransitionLink.jsx";
+import { runTransition } from "../lib/transition.js";
 
 // Suggested searches. Each is checked against the sample records: a chip must
 // return results, so edit this list if the dataset changes.
@@ -30,7 +32,7 @@ export default function HomePage() {
   function onSubmit(e) {
     e.preventDefault();
     const q = text.trim();
-    navigate(q ? `results?q=${encodeURIComponent(q)}` : "results");
+    runTransition(() => navigate(q ? `results?q=${encodeURIComponent(q)}` : "results"));
   }
 
   return (
@@ -69,7 +71,7 @@ export default function HomePage() {
         <div className="chips">
           <span className="chips-label">Try</span>
           {TRY_CHIPS.map((c) => (
-            <Link key={c} className="chip" to={`results?q=${encodeURIComponent(c)}`}>{c}</Link>
+            <TransitionLink key={c} className="chip" to={`results?q=${encodeURIComponent(c)}`}>{c}</TransitionLink>
           ))}
         </div>
         <button

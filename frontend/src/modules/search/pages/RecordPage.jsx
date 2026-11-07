@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import { getMappings, getRecord, getRecords } from "../api/searchApi.js";
+import { getMappings, getRecord, getRecords, peekAllRecords, peekMappings } from "../api/searchApi.js";
 import { threadHref } from "../../../shell/links.js";
 import AccessInfo from "../components/AccessInfo.jsx";
 import Provenance from "../components/Provenance.jsx";
 import RelatedRecords from "../components/RelatedRecords.jsx";
+import TransitionLink from "../components/TransitionLink.jsx";
 import { NOT_PROVIDED, isDerived, resourceTypeLabel } from "../lib/labels.js";
 import { relatedRecords } from "../lib/related.js";
 
@@ -28,17 +29,25 @@ export default function RecordPage() {
   const { id } = useParams();
   const location = useLocation();
   const headingRef = useRef(null);
-  const [state, setState] = useState({ loading: true });
-  const [all, setAll] = useState([]);
-  const [mappings, setMappings] = useState({});
+  // A record opened from a card arrives in the navigation state, so the page can draw
+  // at once (and the card can morph into it). The API copy still replaces it.
+  const carried = location.state?.record?.id === id ? location.state.record : null;
+  const [state, setState] = useState(carried ? { loading: false, record: carried } : { loading: true });
+  const [all, setAll] = useState(() => peekAllRecords() || []);
+  const [mappings, setMappings] = useState(() => {
+    const cached = peekMappings();
+    return cached ? Object.fromEntries(cached.map((m) => [m.source_id, m])) : {};
+  });
 
   useEffect(() => {
     let stale = false;
-    setState({ loading: true });
+    setState(carried ? { loading: false, record: carried } : { loading: true });
     getRecord(id).then((r) => !stale && setState({ loading: false, ...r }));
     return () => {
       stale = true;
     };
+    // `carried` is derived from location.state, which changes together with id
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   useEffect(() => {
@@ -60,7 +69,9 @@ export default function RecordPage() {
     return () => {
       document.title = before;
     };
-  }, [state.loading, record]);
+    // depend on the id, not the object: the API copy replacing the carried one must not refocus or scroll
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.loading, record?.id]);
 
   const back = location.state?.from || "/search/results";
 
@@ -90,15 +101,15 @@ export default function RecordPage() {
 
   return (
     <article className="page record-page" aria-labelledby="rec-title">
-      <Link className="back-link" to={back}><span aria-hidden="true">←</span> Back to results</Link>
+      <TransitionLink className="back-link" to={back}><span aria-hidden="true">←</span> Back to results</TransitionLink>
 
       {state.offline && (
         <p className="notice" role="status">Offline sample data: showing a copy of this record.</p>
       )}
 
       <header className="rec-head">
-        <p className="rec-inst"><span className="ac-label">Held by</span> {r.source_institution}</p>
-        <h1 id="rec-title" ref={headingRef} tabIndex={-1}>{r.title}</h1>
+        <p className="rec-inst" data-vt-target><span className="ac-label">Held by</span> {r.source_institution}</p>
+        <h1 id="rec-title" ref={headingRef} tabIndex={-1} data-vt-target>{r.title}</h1>
         <p className="rec-meta">
           {resourceTypeLabel(r.resource_type)} · {r.date_display || NOT_PROVIDED}
         </p>
@@ -205,7 +216,7 @@ export default function RecordPage() {
         <Provenance record={r} mapping={mapping} open />
       </section>
 
-      <RelatedRecords items={related} />
+      <RelatedRecords items={related} from={back} />
     </article>
   );
 }

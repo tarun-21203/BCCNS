@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
 import { recordHref } from "../../../shell/links.js";
+import TransitionLink from "./TransitionLink.jsx";
 
-export default function RelatedRecords({ items }) {
+export default function RelatedRecords({ items, from }) {
   return (
     <section className="rec-related" aria-labelledby="related-h">
       <h2 id="related-h">Described the same way</h2>
@@ -14,9 +14,9 @@ export default function RelatedRecords({ items }) {
       ) : (
         <ul className="rel-list">
           {items.map(({ record: r, shared }) => (
-            <li key={r.id} className="rel-item">
-              <Link className="rel-title" to={recordHref(r.id)}>{r.title}</Link>
-              <span className="rel-inst">{r.source_institution}</span>
+            <li key={r.id} className="rel-item" data-morph>
+              <TransitionLink morph className="rel-title" to={recordHref(r.id)} state={{ from, record: r }} data-morph-title>{r.title}</TransitionLink>
+              <span className="rel-inst" data-morph-inst>{r.source_institution}</span>
               <span className="rel-shared">
                 <span className="ac-label">Shares</span>
                 {shared.map((s) => (

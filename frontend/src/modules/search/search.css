@@ -341,7 +341,7 @@
 }
 
 /* ---------- Record page ---------- */
-.record-page { max-width: 1180px; animation: card-rise 0.45s ease both; }
+.record-page { max-width: 1180px; }
 .back-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--blue-deep); text-decoration: none; font-weight: 500; }
 .back-link:hover { text-decoration: underline; text-underline-offset: 3px; }
 .rec-head { margin: 4px 0 28px; }
@@ -389,4 +389,30 @@
   .rec-layout { grid-template-columns: minmax(0, 1fr); }
   .rec-side { position: static; order: -1; }
 }
-@media (prefers-reduced-motion: reduce) { .record-page { animation: none; } }
+
+/* ---------- Motion: page entrance, View Transitions, smooth disclosure ---------- */
+.page-enter { animation: page-in 0.35s ease both; }
+@keyframes page-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+/* while a View Transition is running it owns the movement, so the CSS entrances step aside */
+.vt-running .page-enter, .vt-running .acard, .vt-running .chip-active { animation: none; }
+
+/* the card's title and institution line glide into the record page heading */
+.rec-head h1 { view-transition-name: rec-title; }
+.rec-inst { view-transition-name: rec-inst; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.22s; animation-timing-function: ease; }
+::view-transition-group(rec-title), ::view-transition-group(rec-inst) {
+  animation-duration: 0.5s; animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* provenance opens and closes smoothly where the browser can animate <details> content */
+@supports (interpolate-size: allow-keywords) {
+  .prov { interpolate-size: allow-keywords; }
+  .prov::details-content { height: 0; overflow: clip; transition: height 0.32s ease, content-visibility 0.32s allow-discrete; }
+  .prov[open]::details-content { height: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter { animation: none; }
+  .prov::details-content { transition: none; }
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+}

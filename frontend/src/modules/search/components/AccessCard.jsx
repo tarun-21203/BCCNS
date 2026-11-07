@@ -1,6 +1,7 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { recordHref } from "../../../shell/links.js";
 import AccessInfo from "./AccessInfo.jsx";
+import TransitionLink from "./TransitionLink.jsx";
 import Provenance from "./Provenance.jsx";
 import { NOT_PROVIDED, isDerived, resourceTypeLabel } from "../lib/labels.js";
 
@@ -17,10 +18,10 @@ export default function AccessCard({ record: r, mapping, index = 0 }) {
   const location = useLocation();
 
   return (
-    <li className="acard" style={{ "--i": Math.min(index, 8) }}>
+    <li className="acard" data-morph style={{ "--i": Math.min(index, 8) }}>
       <article aria-labelledby={`card-title-${r.id}`}>
         <div className="ac-head">
-          <span className="ac-inst">
+          <span className="ac-inst" data-morph-inst>
             <span className="ac-label">Held by</span> {r.source_institution}
           </span>
           <span className="ac-meta">
@@ -28,7 +29,7 @@ export default function AccessCard({ record: r, mapping, index = 0 }) {
           </span>
         </div>
 
-        <h2 id={`card-title-${r.id}`} className="ac-title">
+        <h2 id={`card-title-${r.id}`} className="ac-title" data-morph-title>
           {r.title}
         </h2>
         {r.description && <p className="ac-desc">{r.description}</p>}
@@ -70,9 +71,9 @@ export default function AccessCard({ record: r, mapping, index = 0 }) {
             Original ID: {r.original_id}
           </span>
           <span className="ac-actions">
-            <Link className="btn btn-ghost" to={recordHref(r.id)} state={{ from: location.pathname + location.search }}>
+            <TransitionLink morph className="btn btn-ghost" to={recordHref(r.id)} state={{ from: location.pathname + location.search, record: r }}>
               View details
-            </Link>
+            </TransitionLink>
             <a className="btn btn-primary" href={r.original_url} target="_blank" rel="noopener noreferrer">
               Open at {r.source_institution} ↗<span className="visually-hidden"> (opens in a new tab)</span>
             </a>

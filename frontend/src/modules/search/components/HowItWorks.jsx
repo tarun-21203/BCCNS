@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import TransitionLink from "./TransitionLink.jsx";
 import AccessCard from "./AccessCard.jsx";
 import { getMappings } from "../api/searchApi.js";
 import { filterLocally } from "../lib/localSearch.js";
@@ -82,7 +82,7 @@ function SearchDemo({ records, words, active }) {
       <div className="chips">
         <span className="chips-label">Try</span>
         {words.map((w) => (
-          <Link key={w} className="chip" to={`results?q=${encodeURIComponent(w)}`}>{w}</Link>
+          <TransitionLink key={w} className="chip" to={`results?q=${encodeURIComponent(w)}`}>{w}</TransitionLink>
         ))}
       </div>
     </div>

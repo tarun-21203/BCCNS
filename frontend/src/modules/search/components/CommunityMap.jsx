@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import L from "leaflet";
 import { MapContainer, TileLayer, Marker, Popup, Tooltip, useMap, useMapEvents } from "react-leaflet";
-import { Link } from "react-router-dom";
+import TransitionLink from "./TransitionLink.jsx";
 import "leaflet/dist/leaflet.css";
 import { clusterPoints } from "../lib/geo.js";
 
@@ -85,9 +85,9 @@ function Markers({ communities, statsByName }) {
               <p className="tm-line">Held by {s.institutions.join(", ")}</p>
               {s.digitization.length > 0 && <p className="tm-line">{s.digitization.join(" · ")}</p>}
               <p className="tm-eg">e.g. {s.records[0].title}</p>
-              <Link className="tm-btn" to={`results?community=${encodeURIComponent(c.name)}`}>
+              <TransitionLink className="tm-btn" to={`results?community=${encodeURIComponent(c.name)}`}>
                 View {s.count} {s.count === 1 ? "record" : "records"} →
-              </Link>
+              </TransitionLink>
             </>
           ) : (
             <p className="tm-line">Limited indexed coverage. This does not mean no records exist elsewhere.</p>

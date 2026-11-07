@@ -30,8 +30,26 @@ function toQuery(params = {}) {
   return s ? `?${s}` : "";
 }
 
+// Unfiltered records and the mapping list are needed on most pages. Keep them for a
+// minute so moving between pages does not refetch; peek*() lets a page render
+// from them immediately.
+const TTL_MS = 60_000;
+let allCache = null;
+let mappingsCache = null;
+const isUnfiltered = (params) => !params || Object.values(params).every((v) => v === "" || v == null);
+const fresh = (c) => c && Date.now() - c.at < TTL_MS;
+export const peekAllRecords = () => (fresh(allCache) ? allCache.value.records : null);
+export const peekMappings = () => (fresh(mappingsCache) ? mappingsCache.value : null);
+
 // Returns { records, count, offline }.
 export async function getRecords(params) {
+  if (isUnfiltered(params) && fresh(allCache)) return allCache.value;
+  const result = await fetchRecords(params);
+  if (isUnfiltered(params) && !result.offline) allCache = { at: Date.now(), value: result };
+  return result;
+}
+
+async function fetchRecords(params) {
   try {
     const data = await fetchJson(`/records${toQuery(params)}`);
     return { records: data.results, count: data.count, offline: false };
@@ -54,8 +72,10 @@ export async function getRecord(id) {
 // Provenance detail (institution URL, harvest method, field mapping) lives in
 // the per-source mapping files, not on each record.
 export async function getMappings() {
+  if (fresh(mappingsCache)) return mappingsCache.value;
   try {
     const data = await fetchJson("/mappings");
+    mappingsCache = { at: Date.now(), value: data.results };
     return data.results;
   } catch {
     return [];
