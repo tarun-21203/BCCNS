@@ -16,6 +16,12 @@ shown on the page itself, not in a footnote.
 - `api/mapApi.js` reads `GET /api/records` and `GET /api/communities`; falls
   back to `fixtures/` (copies of `data/sample/records.json` and
   `data/sample/communities.json`) when offline.
+- `components/CoverageMap.jsx` (Leaflet + OpenStreetMap tiles) and
+  `components/CoverageTable.jsx` (works without tiles/network) share one
+  selection. `components/CommunityPanel.jsx` shows the selected community's
+  digitization split, holding institutions and records, each linking to its
+  Access Card (`recordHref`) and its original record; it also links to Thread
+  View (`threadHref`). `components/Legend.jsx` defines the coverage labels.
 - Community names come from the Government of Nova Scotia dataset
   "African Nova Scotian Family Names by Region"; the citation is read from
   each community entry and shown on the page.

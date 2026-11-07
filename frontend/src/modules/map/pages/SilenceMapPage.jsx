@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { getCoverageInputs } from "../api/mapApi.js";
-import { buildCoverage, LIMITED_MAX } from "../lib/coverage.js";
+import { buildCoverage } from "../lib/coverage.js";
 import CoverageMap from "../components/CoverageMap.jsx";
 import CoverageTable from "../components/CoverageTable.jsx";
+import CommunityPanel from "../components/CommunityPanel.jsx";
+import Legend from "../components/Legend.jsx";
 
 // Silence Map (Member 4). Map view with a table view that works without
 // map tiles or network.
@@ -23,6 +25,7 @@ export default function SilenceMapPage() {
   if (state.loading) return <p>Loading coverage…</p>;
 
   const citations = [...new Set(coverage.rows.map((r) => r.citation).filter(Boolean))];
+  const selectedRow = coverage.rows.find((r) => r.name === selected) || null;
 
   return (
     <section className="sm">
@@ -63,30 +66,28 @@ export default function SilenceMapPage() {
         ))}
       </div>
 
-      {view === "map" ? (
-        <CoverageMap rows={coverage.rows} selected={selected} onSelect={setSelected} />
-      ) : (
-        <CoverageTable rows={coverage.rows} selected={selected} onSelect={setSelected} />
-      )}
-
-      {coverage.excluded.length > 0 && (
-        <p className="sm-muted">
-          {coverage.excluded.length} record(s) not counted: their community values were added by
-          THREADS and have not been reviewed yet.
-        </p>
-      )}
-
-      <footer className="sm-foot">
-        <p>
-          <strong>Limited indexed coverage</strong> = {LIMITED_MAX} or fewer matching records in the
-          indexed sample. Digitization counts show only what each source record states.
-        </p>
-        {citations.length > 0 && (
-          <p>
-            Community names: {citations.join("; ")}. Coordinates are approximate.
-          </p>
-        )}
-      </footer>
+      <div className="sm-body">
+        <div className="sm-main">
+          {view === "map" ? (
+            <CoverageMap rows={coverage.rows} selected={selected} onSelect={setSelected} />
+          ) : (
+            <CoverageTable rows={coverage.rows} selected={selected} onSelect={setSelected} />
+          )}
+          {coverage.excluded.length > 0 && (
+            <p className="sm-muted">
+              {coverage.excluded.length} record(s) not counted: their community values were added
+              by THREADS and have not been reviewed yet.
+            </p>
+          )}
+          <Legend citations={citations} />
+        </div>
+        <CommunityPanel
+          row={selectedRow}
+          rows={coverage.rows}
+          totalRecords={coverage.totalRecords}
+          onClose={() => setSelected(null)}
+        />
+      </div>
     </section>
   );
 }
