@@ -416,3 +416,46 @@
   .prov::details-content { transition: none; }
   ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
+
+/* ---------- Institutions page ---------- */
+.hero-links { display: flex; flex-wrap: wrap; gap: 4px 28px; margin-top: 18px; }
+.hero-links .scroll-cue { margin-top: 0; }
+a.scroll-cue { text-decoration: none; display: inline-block; }
+.hero-links a.scroll-cue span { animation: none; }
+.note-link { color: var(--blue-deep); }
+
+.inst-page { max-width: 1100px; }
+.inst-intro h1 { margin: 0 0 10px; font-size: clamp(1.9rem, 3.8vw, 3rem); letter-spacing: -0.03em; outline: none; line-height: 1.1; }
+.inst-lede { margin: 0 0 16px; font-size: 1.1rem; color: var(--muted); max-width: 62ch; }
+.inst-sample { margin: 0 0 16px; padding: 12px 16px; border-left: 4px solid var(--blue); background: var(--surface); border-radius: 8px; color: var(--ink); max-width: 76ch; }
+.inst-page .results { margin-top: 22px; }
+.inst-card { padding-bottom: 18px; scroll-margin-top: 20px; }
+.inst-card:hover, .inst-card:focus-within { transform: none; }
+.inst-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px 20px; flex-wrap: wrap; }
+.inst-head .ac-label { margin: 0 0 4px; }
+.inst-head .ac-title { margin: 0 0 4px; font-size: 1.5rem; }
+.inst-facts { margin: 16px 0 4px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px 24px; padding: 14px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.inst-facts dt { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.inst-facts dd { margin: 2px 0 0; overflow-wrap: anywhere; }
+.inst-big { font-size: 2rem; font-weight: 700; letter-spacing: -0.03em; color: var(--blue-deep); line-height: 1.1; }
+.inst-card .prov-h { margin-top: 18px; }
+
+/* stacked digitization bar: patterns as well as colour, so no state depends on colour alone */
+.dig-bar { display: flex; gap: 3px; height: 16px; margin-bottom: 10px; }
+.dig-seg { border: 2px solid var(--blue); border-radius: 4px; min-width: 14px; box-sizing: border-box; }
+.seg-digitized { background: var(--blue); }
+.seg-partially_digitized { background: repeating-linear-gradient(135deg, var(--blue) 0 3px, #fff 3px 7px); }
+.seg-not_digitized { background: #fff; border-color: var(--muted); }
+.seg-unknown { background: radial-gradient(var(--muted) 1.2px, transparent 1.4px) 0 0 / 6px 6px, #fff; border: 2px dashed var(--muted); }
+.dig-legend { list-style: none; margin: 0 0 6px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 22px; }
+.inst-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0 32px; }
+.inst-cols .term-list { margin-bottom: 8px; }
+.inst-more { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--line); }
+.inst-more h2 { margin: 0 0 8px; font-size: 1.15rem; }
+.ref-list { padding-left: 20px; }
+
+@media (forced-colors: active) {
+  .dig-seg { border: 2px solid CanvasText; }
+  .seg-digitized { background: CanvasText; }
+  .seg-partially_digitized { background: linear-gradient(90deg, CanvasText 50%, Canvas 50%); }
+}

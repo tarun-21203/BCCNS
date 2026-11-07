@@ -5,6 +5,7 @@ import AccessCard from "../components/AccessCard.jsx";
 import ActiveFilters from "../components/ActiveFilters.jsx";
 import CardSkeleton from "../components/CardSkeleton.jsx";
 import FilterRail from "../components/FilterRail.jsx";
+import TransitionLink from "../components/TransitionLink.jsx";
 import { FILTER_KEYS, readFilters } from "../lib/filters.js";
 
 const SORTS = [
@@ -188,7 +189,8 @@ export default function SearchPage() {
           )}
 
           <p className="sample-note">
-            Prototype index of sample records. Counts describe what is indexed here, not what exists.
+            Prototype index of sample records. Counts describe what is indexed here, not what exists.{" "}
+            <TransitionLink to="/search/institutions" className="note-link">Which institutions are indexed?</TransitionLink>
           </p>
         </div>
       </div>

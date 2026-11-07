@@ -74,13 +74,18 @@ export default function HomePage() {
             <TransitionLink key={c} className="chip" to={`results?q=${encodeURIComponent(c)}`}>{c}</TransitionLink>
           ))}
         </div>
-        <button
-          type="button"
-          className="scroll-cue"
-          onClick={() => document.getElementById("how")?.scrollIntoView({ behavior: "smooth" })}
-        >
-          How a thread is traced <span aria-hidden="true">↓</span>
-        </button>
+        <div className="hero-links">
+          <button
+            type="button"
+            className="scroll-cue"
+            onClick={() => document.getElementById("how")?.scrollIntoView({ behavior: "smooth" })}
+          >
+            How a thread is traced <span aria-hidden="true">↓</span>
+          </button>
+          <TransitionLink className="scroll-cue" to="institutions">
+            Which institutions are indexed? <span aria-hidden="true">→</span>
+          </TransitionLink>
+        </div>
       </div>
 
       <p className="hero-caption">

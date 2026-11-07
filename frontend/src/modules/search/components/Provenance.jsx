@@ -1,3 +1,4 @@
+import TransitionLink from "./TransitionLink.jsx";
 import { ACCESS_LEVEL_LABELS } from "../lib/labels.js";
 import { fieldLabel, formatHarvested, harvestLabel, methodLabel } from "../lib/provenance.js";
 
@@ -30,6 +31,8 @@ export default function Provenance({ record: r, mapping: m, open = false }) {
               {m?.institution_url && (
                 <> · <a href={m.institution_url} target="_blank" rel="noopener noreferrer">Institution website<NewTab /> ↗</a></>
               )}
+              {" · "}
+              <TransitionLink to={`/search/institutions#${r.source_id}`}>About this source in THREADS</TransitionLink>
             </dd>
           </div>
           <div className="prov-step">

@@ -2,6 +2,12 @@ import fixtureRecords from "@data/sample/records.json";
 import fixtureCommunities from "@data/sample/communities.json";
 import { filterLocally } from "../lib/localSearch.js";
 
+// Offline copies come straight from the shared data/ and mappings/ folders, so they
+// always match what the API serves (see vite.config.js for the @data / @mappings aliases).
+const fixtureMappings = Object.values(import.meta.glob("@mappings/*.json", { eager: true, import: "default" })).sort(
+  (a, b) => a.source_id.localeCompare(b.source_id)
+);
+
 // Calls go through the dev proxy (/api -> backend). If the API cannot be
 // reached, we fall back to a copy of data/sample/records.json and report
 // `offline: true` so the UI can say so.
@@ -71,15 +77,20 @@ export async function getRecord(id) {
 
 // Provenance detail (institution URL, harvest method, field mapping) lives in
 // the per-source mapping files, not on each record.
-export async function getMappings() {
-  if (fresh(mappingsCache)) return mappingsCache.value;
+export async function getMappingsWithStatus() {
+  if (fresh(mappingsCache)) return { mappings: mappingsCache.value, offline: false };
   try {
     const data = await fetchJson("/mappings");
     mappingsCache = { at: Date.now(), value: data.results };
-    return data.results;
+    return { mappings: data.results, offline: false };
   } catch {
-    return [];
+    return { mappings: fixtureMappings, offline: true };
   }
+}
+
+// Just the list, for callers that do not need to know whether it is the offline copy.
+export async function getMappings() {
+  return (await getMappingsWithStatus()).mappings;
 }
 
 // Communities with approximate coordinates (GET /communities). Returns
