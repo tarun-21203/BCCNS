@@ -44,6 +44,4 @@ export const MODULES = [
   },
 ];
 
-// Where other modules should link to open one record's Access Card.
-// Search (Member 2) owns this page; update here if its route changes.
-export const recordHref = (id) => `/search/records/${encodeURIComponent(id)}`;
+// Cross-module link helpers live in ./links.js (recordHref, threadHref).

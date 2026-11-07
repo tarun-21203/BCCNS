@@ -23,7 +23,7 @@ Owner: Member 5. One React + Vite app in `frontend/` hosts every module.
   Keep an offline fallback to `data/sample` copies so the demo survives
   without the API.
 - Link to a record's Access Card with `recordHref(id)` from
-  `src/shell/modules.jsx`, not a hard-coded path.
+  `src/shell/links.js`, not a hard-coded path.
 - Don't edit another module's folder. Shared styles: `src/styles.css`
   (tokens), `src/shell/shell.css` (shell only).
 - Keep source institution, original ID and original URL visible wherever a

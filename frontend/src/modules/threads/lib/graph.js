@@ -23,6 +23,14 @@ export const ENTITY_TYPE_LABELS = {
   record: "Record",
 };
 
+export const ENTITY_TYPE_PLURALS = {
+  community: "Communities",
+  place: "Places",
+  person: "People",
+  subject: "Subjects",
+  record: "Records",
+};
+
 // An entity on more than this share of records (and at least
 // GENERIC_MIN_RECORDS of them) is "generic", e.g. "Nova Scotia" on every
 // record. It is hidden by default because it would connect everything.
