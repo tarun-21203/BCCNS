@@ -4,7 +4,6 @@ from pydantic import BaseModel
 from app.store import (
     load_communities,
     load_crosswalk,
-    load_edges,
     load_mappings,
     load_records,
 )
@@ -101,31 +100,103 @@ def get_record(record_id: str):
 
 @app.get("/entities/{entity_id}/relationships")
 def entity_relationships(entity_id: str):
-    edges = load_edges()
+    """Relationships derived from the records themselves.
+
+    Every relationship comes from entities that co-occur in a record
+    (people, places, communities, subjects) or from a record's own
+    relationships list. There is no separate edges file: a connection
+    exists only where a record supports it, and each one cites the
+    record it came from.
+    """
     records = load_records()
     entity = entity_id.replace("_", " ")
-    related_edges = [
-        edge
-        for edge in edges
-        if edge.get("from", "").lower() == entity.lower()
-        or edge.get("to", "").lower() == entity.lower()
-        or edge.get("source_record_id") == entity_id
+    entity_lower = entity.lower()
+
+    entity_fields = [
+        ("people", "person"),
+        ("places", "place"),
+        ("communities", "community"),
+        ("subjects", "subject"),
     ]
+
+    def entity_type(record, name):
+        if record["id"].lower() == name.lower():
+            return "record"
+        for field, label in entity_fields:
+            if name.lower() in [v.lower() for v in record.get(field, [])]:
+                return label
+        return "entity"
+
     related_records = []
     for record in records:
         entities = (
             record.get("people", [])
             + record.get("places", [])
             + record.get("communities", [])
+            + record.get("subjects", [])
             + [record["id"]]
         )
-        if entity.lower() in [e.lower() for e in entities]:
+        if entity_lower in [e.lower() for e in entities]:
             related_records.append(record)
-    if not related_edges and not related_records:
+    if not related_records:
         raise HTTPException(status_code=404, detail="Entity not found")
+
+    seen = set()
+    relationships = []
+
+    def add_relationship(from_entity, from_type, to_entity, to_type, record, relationship_type):
+        key = (from_entity.lower(), to_entity.lower(), record["id"])
+        if key in seen:
+            return
+        seen.add(key)
+        relationships.append(
+            {
+                "from": from_entity,
+                "from_type": from_type,
+                "to": to_entity,
+                "to_type": to_type,
+                "relationship_type": relationship_type,
+                "source_record_id": record["id"],
+                "evidence_original_url": record["original_url"],
+            }
+        )
+
+    for record in related_records:
+        if record["id"].lower() == entity_lower:
+            # The entity is a record: link it to every entity it contains.
+            for field, label in entity_fields:
+                for value in record.get(field, []):
+                    add_relationship(
+                        record["id"], "record", value, label, record, f"record_has_{label}"
+                    )
+        else:
+            # The entity is a person, place, community, or subject:
+            # link it to its record and to every other entity in that record.
+            from_type = entity_type(record, entity)
+            add_relationship(
+                entity, from_type, record["id"], "record", record, "appears_in_record"
+            )
+            for field, label in entity_fields:
+                for value in record.get(field, []):
+                    if value.lower() == entity_lower:
+                        continue
+                    add_relationship(
+                        entity, from_type, value, label, record, f"shares_{label}"
+                    )
+        # Source-supported relationships declared on the record itself.
+        for rel in record.get("relationships", []):
+            add_relationship(
+                record["id"],
+                "record",
+                rel["target_entity"],
+                "entity",
+                record,
+                rel["relationship_type"],
+            )
+
     return {
         "entity": entity_id,
-        "relationships": related_edges,
+        "relationships": relationships,
         "records": related_records,
     }
 

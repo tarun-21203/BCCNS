@@ -23,10 +23,6 @@ def load_crosswalk():
     return load_json(DATA_DIR / "crosswalk.json")
 
 
-def load_edges():
-    return load_json(SAMPLE_DIR / "edges.json")
-
-
 def load_mappings():
     mappings = {}
     for path in sorted((BASE_DIR / "mappings").glob("*.json")):
