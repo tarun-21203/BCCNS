@@ -3,6 +3,7 @@
 // then replace its `element` here. Keep `path` stable so links keep working.
 import { SearchRoutes } from "../modules/search";
 import { ThreadRoutes } from "../modules/threads";
+import { MapRoutes } from "../modules/map";
 import Placeholder from "./Placeholder.jsx";
 
 export const MODULES = [
@@ -28,13 +29,7 @@ export const MODULES = [
     path: "map",
     label: "Silence Map",
     owner: "Member 4",
-    element: (
-      <Placeholder
-        title="Silence Map"
-        owner="Member 4"
-        contract="GET /api/coverage and GET /api/communities — counts describe our index, not history."
-      />
-    ),
+    element: <MapRoutes />,
   },
   {
     path: "threads",

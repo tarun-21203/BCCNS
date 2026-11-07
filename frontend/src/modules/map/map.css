@@ -1,0 +1,54 @@
+/* Silence Map (Member 4). All classes are prefixed sm-. */
+.sm {
+  --sm-found: #2f6f6a;
+  --sm-limited: #b8752b;
+  --sm-known: #6b6aa8;
+  --sm-unknown: #8e897f;
+}
+.sm-head h1 { margin-bottom: 4px; }
+.sm-lede { margin-top: 0; color: var(--muted); }
+.sm-muted { color: var(--muted); font-size: 0.95rem; }
+
+.sm-disclaimer {
+  background: var(--surface);
+  border-left: 4px solid var(--accent);
+  padding: 10px 12px;
+  border-radius: 4px;
+}
+
+.sm-tablewrap { overflow-x: auto; margin: 16px 0; }
+.sm-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: 0.95rem;
+}
+.sm-table th, .sm-table td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.sm-table thead th { font-weight: 600; white-space: nowrap; }
+.sm-table td:nth-child(2) { font-variant-numeric: tabular-nums; }
+
+.sm-badge {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+.sm-badge--found { background: var(--sm-found); }
+.sm-badge--limited { background: var(--sm-limited); }
+.sm-badge--known { background: var(--sm-known); }
+.sm-badge--unknown { background: var(--sm-unknown); }
+
+.sm-foot { color: var(--muted); font-size: 0.9rem; }
+
+.sm-visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
