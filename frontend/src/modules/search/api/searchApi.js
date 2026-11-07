@@ -1,4 +1,6 @@
 import fixtureRecords from "../fixtures/records.json";
+import fixtureCommunities from "../fixtures/communities.json";
+import { filterLocally } from "../lib/localSearch.js";
 
 // Calls go through the dev proxy (/api -> backend). If the API cannot be
 // reached, we fall back to a copy of data/sample/records.json and report
@@ -34,7 +36,8 @@ export async function getRecords(params) {
     const data = await fetchJson(`/records${toQuery(params)}`);
     return { records: data.results, count: data.count, offline: false };
   } catch {
-    return { records: fixtureRecords, count: fixtureRecords.length, offline: true };
+    const records = filterLocally(fixtureRecords, params);
+    return { records, count: records.length, offline: true };
   }
 }
 
@@ -56,5 +59,17 @@ export async function getMappings() {
     return data.results;
   } catch {
     return [];
+  }
+}
+
+// Communities with approximate coordinates (GET /communities). Returns
+// { communities, offline }. Record counts are computed from records, not
+// taken from the indexed_count field, so they always match what search finds.
+export async function getCommunities() {
+  try {
+    const data = await fetchJson("/communities");
+    return { communities: data.results, offline: false };
+  } catch {
+    return { communities: fixtureCommunities, offline: true };
   }
 }
