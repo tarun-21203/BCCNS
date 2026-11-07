@@ -42,3 +42,13 @@ export const resourceTypeLabel = (v) => label(RESOURCE_TYPE_LABELS, v, v || "Oth
 export function isDerived(record, field) {
   return Boolean(record.derived_fields && record.derived_fields[field]);
 }
+
+// Short badge text for the Access Card's access block.
+export const ACCESS_BADGES = {
+  record: "From the record",
+  institution: "General policy · not specific to this record",
+  unknown: "Not stated",
+};
+export const accessBadge = (v) => ACCESS_BADGES[v] || ACCESS_BADGES.unknown;
+
+export const NO_ACCESS_INFO = "Access information not available in the indexed record.";

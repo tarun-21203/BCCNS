@@ -85,7 +85,7 @@ function Markers({ communities, statsByName }) {
               <p className="tm-line">Held by {s.institutions.join(", ")}</p>
               {s.digitization.length > 0 && <p className="tm-line">{s.digitization.join(" · ")}</p>}
               <p className="tm-eg">e.g. {s.records[0].title}</p>
-              <Link className="tm-btn" to={`/search?community=${encodeURIComponent(c.name)}`}>
+              <Link className="tm-btn" to={`results?community=${encodeURIComponent(c.name)}`}>
                 View {s.count} {s.count === 1 ? "record" : "records"} →
               </Link>
             </>
