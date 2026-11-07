@@ -1,5 +1,5 @@
-import fixtureRecords from "../fixtures/records.json";
-import fixtureCommunities from "../fixtures/communities.json";
+import fixtureRecords from "@data/sample/records.json";
+import fixtureCommunities from "@data/sample/communities.json";
 import { filterLocally } from "../lib/localSearch.js";
 
 // Calls go through the dev proxy (/api -> backend). If the API cannot be
