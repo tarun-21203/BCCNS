@@ -1,11 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
 import { getCoverageInputs } from "../api/mapApi.js";
-import { buildCoverage, COVERAGE_LABELS, DIGITIZATION_STATUSES, LIMITED_MAX } from "../lib/coverage.js";
+import { buildCoverage, LIMITED_MAX } from "../lib/coverage.js";
+import CoverageMap from "../components/CoverageMap.jsx";
+import CoverageTable from "../components/CoverageTable.jsx";
 
-// Silence Map (Member 4). Part 1: coverage table that works without a map
-// library or network. The interactive map is layered on top of this.
+// Silence Map (Member 4). Map view with a table view that works without
+// map tiles or network.
 export default function SilenceMapPage() {
   const [state, setState] = useState({ loading: true });
+  const [view, setView] = useState("map");
+  const [selected, setSelected] = useState(null);
 
   useEffect(() => {
     getCoverageInputs().then((r) => setState({ loading: false, ...r }));
@@ -45,39 +49,25 @@ export default function SilenceMapPage() {
         </p>
       )}
 
-      <div className="sm-tablewrap">
-        <table className="sm-table">
-          <caption className="sm-visually-hidden">Indexed records per community</caption>
-          <thead>
-            <tr>
-              <th scope="col">Community</th>
-              <th scope="col">Indexed records</th>
-              <th scope="col">Coverage</th>
-              {DIGITIZATION_STATUSES.map((s) => (
-                <th scope="col" key={s.key}>{s.label}</th>
-              ))}
-              <th scope="col">Held by</th>
-            </tr>
-          </thead>
-          <tbody>
-            {coverage.rows.map((r) => (
-              <tr key={r.name}>
-                <th scope="row">{r.name}</th>
-                <td>{r.count}</td>
-                <td>
-                  <span className={`sm-badge sm-badge--${r.status}`} title={COVERAGE_LABELS[r.status].help}>
-                    {COVERAGE_LABELS[r.status].label}
-                  </span>
-                </td>
-                {DIGITIZATION_STATUSES.map((s) => (
-                  <td key={s.key}>{r.byStatus[s.key]}</td>
-                ))}
-                <td>{Object.keys(r.byInstitution).join(", ") || "None in indexed sources"}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="sm-viewtoggle" role="group" aria-label="View">
+        {["map", "table"].map((v) => (
+          <button
+            key={v}
+            type="button"
+            className={view === v ? "is-active" : undefined}
+            aria-pressed={view === v}
+            onClick={() => setView(v)}
+          >
+            {v === "map" ? "Map" : "Table"}
+          </button>
+        ))}
       </div>
+
+      {view === "map" ? (
+        <CoverageMap rows={coverage.rows} selected={selected} onSelect={setSelected} />
+      ) : (
+        <CoverageTable rows={coverage.rows} selected={selected} onSelect={setSelected} />
+      )}
 
       {coverage.excluded.length > 0 && (
         <p className="sm-muted">
