@@ -219,3 +219,25 @@ def test_model_failure_serves_cached_real_response(tmp_path):
 
     offline = engine(FakeGenerator(GenerationError("should not be called")), mode="cache", tmp_path=tmp_path)
     assert offline.ask("Africville relocation committee")["served_from"] == "cache"
+
+
+def test_saved_answer_picks_up_corrected_record_link(tmp_path):
+    good = FakeGenerator({"answerable": True, "claims": [
+        {"text": "Minutes exist.", "citations": [{"record_id": "s-a-002", "quote": "Minutes and correspondence of the city committee"}]}
+    ], "gaps": ""})
+    e = engine(good, mode="live", tmp_path=tmp_path)
+    e.cache.put("q", None, e.ask("Africville relocation committee"))
+    e.cache.save()
+
+    # Member 1 fixes the record's link after the answer was saved.
+    fixed = [dict(r, original_url="https://example.org/fixed") if r["id"] == "s-a-002" else r for r in RECORDS]
+    s = Settings(mode="cache", cache_path=tmp_path / "cache.json")
+    out = Engine(fixed, BRIDGE, s, generator=good, cache=ResponseCache(s.cache_path)).ask("q")
+    assert out["served_from"] == "cache"
+    assert out["answer"]["claims"][0]["citations"][0]["record_original_url"] == "https://example.org/fixed"
+    assert next(h for h in out["records"] if h["record"]["id"] == "s-a-002")["record"]["original_url"] == "https://example.org/fixed"
+
+    # If the cited record disappears, the saved answer is not used.
+    gone = [r for r in RECORDS if r["id"] != "s-a-002"]
+    out = Engine(gone, BRIDGE, s, generator=good, cache=ResponseCache(s.cache_path)).ask("q")
+    assert out["served_from"] != "cache"

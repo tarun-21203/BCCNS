@@ -10,13 +10,14 @@ from .grounding import (
     SYSTEM_PROMPT,
     GenerationError,
     GeneratorFn,
+    _quote_ok,
     build_user_message,
     make_generator,
     verify,
 )
 from .language_bridge import LanguageBridge
 from .query_parser import parse
-from .records import Record, load_records
+from .records import Record, card, load_records
 from .retrieval import Filters, Hit, Index, build_units
 
 DISCLAIMER = (
@@ -92,7 +93,7 @@ class Engine:
         mode = self.settings.mode
 
         if mode == "cache":
-            cached = self.cache.get(question, filters)
+            cached = self._refresh_cached(self.cache.get(question, filters))
             if cached:
                 cached["served_from"] = "cache"
                 return cached
@@ -120,7 +121,7 @@ class Engine:
             raw = self.generator(SYSTEM_PROMPT, build_user_message(question, retrieved))
         except GenerationError as e:
             if mode == "auto":
-                cached = self.cache.get(question, filters)
+                cached = self._refresh_cached(self.cache.get(question, filters))
                 if cached:
                     cached["served_from"] = "cache"
                     cached["live_error"] = str(e)
@@ -143,6 +144,30 @@ class Engine:
             "verification": check.to_dict(),
             "served_from": "live",
         }
+
+    def _refresh_cached(self, cached: dict[str, Any] | None) -> dict[str, Any] | None:
+        """Re-attach current record data (links, titles, access) to a saved answer.
+
+        The saved wording and quotes stay as generated, but record details always come from the
+        current index, so a corrected link in data/sample/records.json shows up immediately. If a
+        cited record no longer exists, or a quote is no longer in it, the saved answer is not used.
+        """
+        if not cached:
+            return None
+        by_id = {r["id"]: r for r in self.records}
+        for claim in (cached.get("answer") or {}).get("claims", []):
+            for c in claim.get("citations", []):
+                record = by_id.get(c.get("record_id"))
+                if record is None or not _quote_ok(c.get("quote", ""), record)[0]:
+                    return None
+                c.update({f"record_{k}": v for k, v in card(record).items() if k != "id"})
+        fresh_hits = []
+        for h in cached.get("records", []):
+            record = by_id.get(h.get("record", {}).get("id"))
+            if record is not None:
+                fresh_hits.append({**h, "record": record, "content_note": self.bridge.content_note_for(record)})
+        cached["records"] = fresh_hits
+        return cached
 
     # ------------------------------------------------------------------ responses
     def _abstain(self, hits: list[Hit], gaps: str) -> dict[str, Any]:

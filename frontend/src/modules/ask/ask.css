@@ -1,5 +1,7 @@
 /* Ask the archive (Member 3). Uses the shared tokens from src/styles.css. */
-.ask { max-width: 860px; margin: 0 auto; }
+/* Same page padding as the search module's .page (the shell's <main> has none). */
+.ask { max-width: 924px; margin: 0 auto; padding: 28px 32px 60px; }
+@media (max-width: 860px) { .ask { padding: 20px 16px 48px; } }
 .ask h1 { margin: 8px 0 4px; }
 .ask-intro p { color: var(--muted); margin-top: 0; }
 .ask .visually-hidden {
