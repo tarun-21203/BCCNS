@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import L from "leaflet";
-import { MapContainer, TileLayer, Marker, Popup, Tooltip, useMap, useMapEvents } from "react-leaflet";
+import { AttributionControl, MapContainer, TileLayer, Marker, Popup, Tooltip, useMap, useMapEvents } from "react-leaflet";
+import MagnifierLens from "./MagnifierLens.jsx";
 import TransitionLink from "./TransitionLink.jsx";
+import { TILE_ATTRIBUTION, TILE_URL } from "../lib/mapConfig.js";
 import "leaflet/dist/leaflet.css";
 import { clusterPoints } from "../lib/geo.js";
 
@@ -99,24 +101,59 @@ function Markers({ communities, statsByName }) {
   });
 }
 
+// The lens needs a mouse and is optional motion, so it is skipped on touch screens and
+// for people who have asked for reduced motion. Everyone else can switch it off.
+const lensSupported = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
+  !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const readPref = () => {
+  try {
+    return localStorage.getItem("threads.lens") !== "off";
+  } catch {
+    return true;
+  }
+};
+
 export default function CommunityMap({ communities, statsByName }) {
+  const [supported] = useState(lensSupported);
+  const [lensOn, setLensOn] = useState(readPref);
+
+  function toggle() {
+    setLensOn((on) => {
+      try {
+        localStorage.setItem("threads.lens", on ? "off" : "on");
+      } catch {
+        /* the preference just will not persist */
+      }
+      return !on;
+    });
+  }
+
   return (
-    <MapContainer
-      className="community-map"
-      center={[44.7, -63.6]}
-      zoom={7}
-      minZoom={4}
-      zoomControl={false}
-      worldCopyJump
-      attributionControl
-    >
-      <TileLayer
-        url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
-        attribution="Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ"
-        maxZoom={16}
-      />
-      <FitToCommunities communities={communities} />
-      <Markers communities={communities} statsByName={statsByName} />
-    </MapContainer>
+    <>
+      <MapContainer
+        className="community-map"
+        center={[44.7, -63.6]}
+        zoom={7}
+        minZoom={4}
+        zoomControl={false}
+        worldCopyJump
+        attributionControl={false}
+      >
+        <AttributionControl position="bottomright" prefix={false} />
+        <TileLayer url={TILE_URL} attribution={TILE_ATTRIBUTION} maxZoom={16} />
+        <FitToCommunities communities={communities} />
+        <Markers communities={communities} statsByName={statsByName} />
+        {supported && lensOn && <MagnifierLens communities={communities} statsByName={statsByName} />}
+      </MapContainer>
+      {supported && (
+        <button type="button" className="lens-toggle" aria-pressed={lensOn} onClick={toggle}>
+          <span className="lens-toggle-icon" aria-hidden="true" />
+          Magnifier <strong>{lensOn ? "on" : "off"}</strong>
+        </button>
+      )}
+    </>
   );
 }
