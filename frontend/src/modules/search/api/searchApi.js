@@ -55,13 +55,40 @@ export async function getRecords(params) {
   return result;
 }
 
-async function fetchRecords(params) {
+async function fetchRecords(params = {}) {
+  const { search, ...filters } = params;
+  // Free text goes through the AI module's keyword search (GET /ai/records: word matching,
+  // ranking and Language Bridge terms; no AI model involved). Filters are then applied to
+  // those matches with the same rules as GET /records, so the results and the filter-rail
+  // counts always agree. `textMatches` is the set before filters, for the rail.
+  if (search && search.trim()) {
+    const text = await getTextMatches(search);
+    const records = filterLocally(text.records, filters);
+    return { records, count: records.length, offline: text.offline, textMatches: text.records, bridge: text.bridge };
+  }
   try {
     const data = await fetchJson(`/records${toQuery(params)}`);
     return { records: data.results, count: data.count, offline: false };
   } catch {
     const records = filterLocally(fixtureRecords, params);
     return { records, count: records.length, offline: true };
+  }
+}
+
+// Ranked word matches for a text query, including records described with older or variant
+// terms (Language Bridge, data/crosswalk.json). Returns { records, bridge, offline }.
+// If the API has no /ai routes it uses GET /records?search= (exact phrase); if the API is
+// unreachable it uses the same exact-phrase match over the sample records.
+export async function getTextMatches(q) {
+  try {
+    const data = await fetchJson(`/ai/records${toQuery({ q, k: 100 })}`);
+    if (!data.notFound) {
+      return { records: data.results.map((h) => h.record), bridge: data.language_bridge, offline: false };
+    }
+    const plain = await fetchJson(`/records${toQuery({ search: q })}`);
+    return { records: plain.results, bridge: null, offline: false };
+  } catch {
+    return { records: filterLocally(fixtureRecords, { search: q }), bridge: null, offline: true };
   }
 }
 

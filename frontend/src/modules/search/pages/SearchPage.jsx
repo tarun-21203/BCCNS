@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { getMappings, getRecords } from "../api/searchApi.js";
 import AccessCard from "../components/AccessCard.jsx";
 import ActiveFilters from "../components/ActiveFilters.jsx";
@@ -14,8 +14,9 @@ const SORTS = [
   { value: "date_desc", label: "Date, newest first" },
 ];
 
-// The API returns no relevance score, so "Source order" is the API's own
-// order. Records without a start year sort last in either direction.
+// With search text, results come back ranked by how well they match (GET /ai/records), so the
+// default order is "Best match"; without text it is the API's own source order.
+// Records without a start year sort last in either direction.
 function sortRecords(records, sort) {
   if (!sort) return records;
   const dir = sort === "date_asc" ? 1 : -1;
@@ -27,6 +28,34 @@ function sortRecords(records, sort) {
     if (y == null) return -1;
     return (x - y) * dir;
   });
+}
+
+// Which related or older catalogue terms the search also used (Language Bridge).
+function BridgeNote({ bridge }) {
+  const matched = bridge?.matched || [];
+  if (!matched.length) return null;
+  return (
+    <p className="bridge-note" role="note">
+      Also searched{" "}
+      {matched.map((m, i) => (
+        <span key={m.concept_id}>
+          {i > 0 && "; "}
+          <strong>{m.also_searched.join(", ")}</strong> for “{m.matched_term}”
+        </span>
+      ))}
+      . <span className="bridge-draft">Terminology map is a draft for community review.</span>
+    </p>
+  );
+}
+
+// Hand the same words to Ask the archive (Member 3), which answers from the records with citations.
+function AskLink({ q }) {
+  return (
+    <p className="ask-handoff">
+      Have a question about this?{" "}
+      <Link to={`/ask?q=${encodeURIComponent(q)}`}>Ask the archive <span aria-hidden="true">→</span></Link>
+    </p>
+  );
 }
 
 export default function SearchPage() {
@@ -98,11 +127,13 @@ export default function SearchPage() {
     update({ q: text.trim() });
   }
 
+  // With search text, the rail counts within the text matches (already word-matched and
+  // Language-Bridge-expanded), so the counts agree with the results list.
   const rail = (
     <FilterRail
-      catalogue={catalogue}
+      catalogue={state.textMatches || catalogue}
       filters={filters}
-      q={q}
+      q={state.textMatches ? "" : q}
       onChange={setFilter}
       onYears={setYears}
       onClear={clearFilters}
@@ -139,6 +170,8 @@ export default function SearchPage() {
 
           <ActiveFilters filters={filters} onRemove={removeFilters} onClear={clearFilters} />
 
+          {!state.loading && <BridgeNote bridge={state.bridge} />}
+
           <div className="results-bar">
             <p className="status" aria-live="polite">
               {state.loading ? (
@@ -159,7 +192,7 @@ export default function SearchPage() {
                 <span>Sort</span>
                 <select value={sort} onChange={(e) => update({ sort: e.target.value })}>
                   {SORTS.map((s) => (
-                    <option key={s.value} value={s.value}>{s.label}</option>
+                    <option key={s.value} value={s.value}>{!s.value && q ? "Best match" : s.label}</option>
                   ))}
                 </select>
               </label>
@@ -179,6 +212,7 @@ export default function SearchPage() {
               {Object.keys(filters).length > 0 && (
                 <button type="button" className="btn btn-ghost" onClick={clearFilters}>Clear filters</button>
               )}
+              {q && <AskLink q={q} />}
             </div>
           ) : (
             <ul className="results">
@@ -187,6 +221,8 @@ export default function SearchPage() {
               ))}
             </ul>
           )}
+
+          {q && records.length > 0 && <AskLink q={q} />}
 
           <p className="sample-note">
             Prototype index of sample records. Counts describe what is indexed here, not what exists.{" "}

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getCommunities, getRecords } from "../api/searchApi.js";
 import { communityStats } from "../lib/communityStats.js";
 import CommunityMap from "../components/CommunityMap.jsx";
@@ -82,6 +82,9 @@ export default function HomePage() {
           </p>
         )}
         <div className="hero-links">
+          <Link className="scroll-cue" to="/ask">
+            Or ask a question <span aria-hidden="true">→</span>
+          </Link>
           <button
             type="button"
             className="scroll-cue"
