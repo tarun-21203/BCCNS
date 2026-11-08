@@ -1,0 +1,117 @@
+/* Ask the archive (Member 3). Uses the shared tokens from src/styles.css. */
+.ask { max-width: 860px; margin: 0 auto; }
+.ask h1 { margin: 8px 0 4px; }
+.ask-intro p { color: var(--muted); margin-top: 0; }
+.ask .visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+.ask-label {
+  font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 600;
+}
+.ask-fine { font-size: 0.85rem; color: var(--muted); }
+
+/* Question form */
+.ask-form { display: flex; gap: 8px; margin: 16px 0; }
+.ask-form input {
+  flex: 1; min-width: 0; font: inherit; padding: 10px 12px;
+  border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text);
+}
+.ask-form input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.ask-form button, .ask-examples button {
+  font: inherit; border-radius: 8px; cursor: pointer;
+}
+.ask-form button {
+  padding: 10px 18px; border: 0; background: var(--accent); color: #fff; font-weight: 600;
+}
+.ask-form button:disabled { opacity: 0.6; cursor: default; }
+
+.ask-examples { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.ask-examples button {
+  padding: 6px 10px; border: 1px solid var(--border); background: var(--surface); color: var(--text);
+  text-align: left; font-size: 0.9rem;
+}
+.ask-examples button:hover { border-color: var(--accent); }
+.ask-loading { color: var(--muted); }
+
+/* How the question was read */
+.ask-understood {
+  display: grid; gap: 8px; margin: 12px 0; padding: 10px 12px;
+  border: 1px dashed var(--border); border-radius: 8px;
+}
+.ask-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.ask-chip {
+  font-size: 0.85rem; padding: 2px 8px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--surface);
+}
+.ask-chip.is-filter { border-color: var(--accent); }
+.ask-chip-kind { color: var(--muted); }
+.ask-bridge ul { margin: 4px 0; padding-left: 18px; font-size: 0.92rem; }
+.ask-historical { font-style: italic; }
+.ask-bridge-note { color: var(--muted); }
+.ask-bridge .ask-fine { margin: 2px 0 0; }
+
+/* Answer / abstention panels */
+.ask-panel {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 14px 16px; margin: 12px 0;
+}
+.ask-panel h2 { font-size: 1.1rem; margin: 0; }
+.ask-panel h3 { font-size: 0.95rem; margin: 14px 0 4px; }
+.ask-panel-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px; margin-bottom: 8px; }
+.ask-served { font-size: 0.8rem; color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: 1px 8px; }
+.ask-answer { border-left: 4px solid var(--accent); }
+.ask-abstain { border-left: 4px solid var(--notice-border); background: var(--notice-bg); }
+.ask-records-only { border-left: 4px solid var(--border); }
+
+.ask-claims { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.ask a.ask-cite-ref {
+  display: inline-block; min-width: 1.4em; padding: 0 4px; margin-left: 2px;
+  font-size: 0.75rem; line-height: 1.4; text-align: center; vertical-align: super;
+  border-radius: 4px; background: var(--accent); color: #fff; text-decoration: none;
+}
+.ask-gaps { margin: 10px 0 0; font-size: 0.92rem; }
+
+.ask-verify { margin-top: 12px; font-size: 0.88rem; }
+.ask-verify summary { cursor: pointer; color: #1f6b3a; font-weight: 600; }
+.ask-verify.has-removed summary { color: #8a5a00; }
+.ask-verify p, .ask-verify ul { color: var(--muted); }
+
+.ask-sources-title { border-top: 1px solid var(--border); padding-top: 10px; }
+.ask-sources { margin: 0; padding-left: 22px; display: grid; gap: 12px; }
+.ask-sources li:target { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+.ask-source-title { font-weight: 600; }
+.ask-source-meta { font-size: 0.85rem; color: var(--muted); }
+.ask-quote {
+  margin: 6px 0; padding: 6px 10px; border-left: 3px solid var(--border);
+  background: var(--bg); font-size: 0.9rem;
+}
+.ask-quote-label { color: var(--muted); font-size: 0.8rem; display: block; }
+.ask-source-links { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 0.9rem; }
+.ask a { color: var(--accent); }
+
+/* Records */
+.ask-records h2 { font-size: 1rem; margin: 20px 0 8px; }
+.ask-records ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.ask-record {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px;
+}
+.ask-record.is-cited { border-color: var(--accent); }
+.ask-record-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px; }
+.ask-record-title { font-weight: 600; text-decoration: none; }
+.ask-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+.ask-badge { font-size: 0.75rem; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--border); }
+.ask-badge.is-cited { background: var(--accent); color: #fff; border-color: var(--accent); }
+.ask-badge.is-bridge { border-color: var(--notice-border); background: var(--notice-bg); }
+.ask-record-meta { display: flex; flex-wrap: wrap; gap: 2px 12px; font-size: 0.85rem; color: var(--muted); margin-top: 2px; }
+.ask-content-note {
+  font-size: 0.85rem; margin: 6px 0; padding: 6px 8px; border-radius: 6px;
+  background: var(--notice-bg); border: 1px solid var(--notice-border);
+}
+.ask-access { font-size: 0.9rem; margin: 6px 0; }
+.ask-record-foot { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; font-size: 0.9rem; }
+
+.ask-disclaimer { font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 10px; margin-top: 18px; }
+
+@media (max-width: 560px) {
+  .ask-form { flex-direction: column; }
+}

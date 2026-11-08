@@ -1,0 +1,9 @@
+{
+  "_notice": "The questions planned for the live demo (same as the example buttons on the /ask page). Includes one the index cannot answer, to show abstention. Run scripts/build_cache.py after any change to records, crosswalk or prompt.",
+  "questions": [
+    "What records document the Africville relocation?",
+    "Which records list Black Loyalists who settled at Birchtown?",
+    "Are there recordings of African Nova Scotian songs?",
+    "What was Viola Desmond's favourite song?"
+  ]
+}

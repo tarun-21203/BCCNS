@@ -4,7 +4,7 @@
 import { SearchRoutes } from "../modules/search";
 import { ThreadRoutes } from "../modules/threads";
 import { MapRoutes } from "../modules/map";
-import Placeholder from "./Placeholder.jsx";
+import { AskRoutes } from "../modules/ask";
 
 export const MODULES = [
   {
@@ -17,13 +17,7 @@ export const MODULES = [
     path: "ask",
     label: "Ask the archive",
     owner: "Member 3",
-    element: (
-      <Placeholder
-        title="Ask the archive"
-        owner="Member 3"
-        contract="POST /api/ai/search with { question } — answers cite indexed records or abstain."
-      />
-    ),
+    element: <AskRoutes />,
   },
   {
     path: "map",

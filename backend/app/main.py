@@ -1,5 +1,7 @@
+import sys
+from pathlib import Path
+
 from fastapi import FastAPI, HTTPException, Query
-from pydantic import BaseModel
 
 from app.store import (
     load_communities,
@@ -8,12 +10,13 @@ from app.store import (
     load_records,
 )
 
+# Member 3's AI module lives in ai/ at the repo root. Make it importable when the API is
+# started with `--app-dir backend`, then mount its /ai/* routes (POST /ai/search etc.).
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "ai"))
+from threads_ai.api import router as ai_router  # noqa: E402
+
 app = FastAPI(title="BCCNS Discovery API")
-
-
-class AiSearchRequest(BaseModel):
-    question: str
-    limit: int = 5
+app.include_router(ai_router)
 
 
 def _matches_text(record, query):
@@ -37,15 +40,6 @@ def _matches_list(record, field, value):
         return True
     values = [v.lower() for v in record.get(field, [])]
     return value.lower() in values
-
-
-def _citation(record):
-    return {
-        "id": record["id"],
-        "title": record["title"],
-        "source_institution": record["source_institution"],
-        "original_url": record["original_url"],
-    }
 
 
 @app.get("/health")
@@ -239,48 +233,3 @@ def list_crosswalk():
 def list_mappings():
     mappings = load_mappings()
     return {"count": len(mappings), "results": list(mappings.values())}
-
-
-@app.post("/ai/search")
-def ai_search(request: AiSearchRequest):
-    """Retrieval only. Returns records matching the question.
-
-    Answer generation is a separate step: it must use only the records
-    returned here, with their citations, and must state that the indexed
-    sources do not provide enough evidence when no records match.
-    """
-    records = load_records()
-    words = [w for w in request.question.lower().split() if len(w) > 3]
-    scored = []
-    for record in records:
-        haystack = " ".join(
-            [
-                record.get("title", ""),
-                record.get("description", ""),
-                *record.get("people", []),
-                *record.get("places", []),
-                *record.get("communities", []),
-                *record.get("subjects", []),
-                *record.get("original_terms", []),
-                *record.get("search_terms", []),
-            ]
-        ).lower()
-        score = sum(1 for word in words if word in haystack)
-        if score:
-            scored.append((score, record))
-    scored.sort(key=lambda item: item[0], reverse=True)
-    results = [record for _, record in scored[: request.limit]]
-    if not results:
-        return {
-            "question": request.question,
-            "sufficient_evidence": False,
-            "message": "The indexed sources do not provide enough evidence to answer this question.",
-            "results": [],
-            "citations": [],
-        }
-    return {
-        "question": request.question,
-        "sufficient_evidence": True,
-        "results": results,
-        "citations": [_citation(record) for record in results],
-    }
