@@ -45,7 +45,7 @@ export default function HomePage() {
 
       <div className="hero-content">
         <p className="eyebrow">
-          <span className="eyebrow-rule" /> A national index · Prototype
+          <span className="eyebrow-rule" /> Black History Knowledge Hub · Early preview
         </p>
         <h1>
           Every thread has a record.
@@ -74,6 +74,13 @@ export default function HomePage() {
             <TransitionLink key={c} className="chip" to={`results?q=${encodeURIComponent(c)}`}>{c}</TransitionLink>
           ))}
         </div>
+        {data && (
+          <p className="hero-note" role="note">
+            A small sample: {data.records.length} records from {institutions} institutions. Few records here never
+            means little history.{data.offline && " Offline sample data."}{" "}
+            <TransitionLink to="institutions">What's covered <span aria-hidden="true">→</span></TransitionLink>
+          </p>
+        )}
         <div className="hero-links">
           <button
             type="button"
@@ -82,21 +89,9 @@ export default function HomePage() {
           >
             How a thread is traced <span aria-hidden="true">↓</span>
           </button>
-          <TransitionLink className="scroll-cue" to="institutions">
-            Which institutions are indexed? <span aria-hidden="true">→</span>
-          </TransitionLink>
         </div>
       </div>
 
-      <p className="hero-caption">
-        {data && (
-          <>
-            Sample holdings · {data.records.length} records · {institutions} institutions ·{" "}
-            {data.communities.length} Nova Scotia communities. This is a demo sample, not a measure of what
-            exists.{data.offline && " Offline sample data."}
-          </>
-        )}
-      </p>
     </section>
     {data && <HowItWorks records={data.records} chips={TRY_CHIPS} />}
     </>
