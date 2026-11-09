@@ -1,0 +1,45 @@
+{
+  "_status": "DRAFT FOR COMMUNITY REVIEW. This is not an authoritative or community-approved vocabulary. It is a small starter list so the Language Bridge can be built and tested. Curation owner: Member 4. In a real rollout BCCNS and community members would review every entry.",
+  "_how_it_works": "If a query contains any term from a concept, the search also looks for every other term in that concept. Original record wording is never changed. 'historical' terms are used only to find records and trigger the content note; they are never suggested to users or used in AI-written text except inside quotes from a record.",
+  "concepts": [
+    {
+      "id": "black_identity",
+      "label": "Black / African Nova Scotian / African Canadian",
+      "modern": ["Black", "African Nova Scotian", "African Nova Scotians", "African Canadian", "African Canadians", "Black Canadian", "Black Canadians", "Black Nova Scotian", "Black Nova Scotians"],
+      "historical": ["Coloured", "Colored", "Negro", "Negroes"],
+      "french": ["Noir", "Noirs", "Néo-Écossais d'ascendance africaine"],
+      "note": "Older catalogue descriptions often use 'Coloured' or 'Negro'. These terms are outdated and can be harmful. They are listed only so records described with them can still be found.",
+      "content_note": "This record's original catalogue description uses historical terminology that is now considered outdated and may be harmful. The original wording is preserved because it is part of the historical record."
+    },
+    {
+      "id": "africville",
+      "label": "Africville",
+      "modern": ["Africville"],
+      "variants": ["Campbell Road", "Campbell Road Settlement"],
+      "note": "Variant place names that may appear in older descriptions. Verify each variant against source records before relying on it."
+    },
+    {
+      "id": "black_loyalists",
+      "label": "Black Loyalists",
+      "modern": ["Black Loyalists", "Black Loyalist"],
+      "historical": ["Negro Loyalists"],
+      "related": ["Book of Negroes", "Birchtown"],
+      "note": "'Book of Negroes' is the historical title of a specific record and is kept as a title, not as a descriptive term.",
+      "content_note": "This record's original title or description uses historical terminology. The original wording is preserved because it is part of the historical record."
+    },
+    {
+      "id": "relocation",
+      "label": "Relocation / displacement",
+      "modern": ["relocation", "relocated", "displacement", "displaced", "expropriation", "expropriated"],
+      "variants": ["removal", "resettlement", "urban renewal"],
+      "note": "Different catalogues describe the same events with different words."
+    },
+    {
+      "id": "church",
+      "label": "Churches and congregations",
+      "modern": ["church", "churches", "congregation", "congregations"],
+      "variants": ["chapel", "Baptist", "African United Baptist Association", "AUBA"],
+      "note": "Church records are a major source for community history."
+    }
+  ]
+}

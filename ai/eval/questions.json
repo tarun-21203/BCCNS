@@ -1,0 +1,19 @@
+{
+  "_notice": "Trust scorecard questions, written against data/sample/records.json (13 records). 'relevant' lists records that should be retrieved in the top 5. Update when the records change. Keep at least a third of the questions unanswerable from the index.",
+  "questions": [
+    {"q": "What records document the Africville relocation?", "expect": "answer", "relevant": ["bccns-013", "bccns-014", "bccns-015"]},
+    {"q": "Which records list Black Loyalists who settled at Birchtown?", "expect": "answer", "relevant": ["bccns-005", "bccns-007"]},
+    {"q": "Are there recordings of African Nova Scotian songs?", "expect": "answer", "relevant": ["bccns-012"]},
+    {"q": "What records exist about Viola Desmond?", "expect": "answer", "relevant": ["bccns-003"]},
+    {"q": "Which records cover the No. 2 Construction Battalion?", "expect": "answer", "relevant": ["bccns-004"]},
+    {"q": "What records describe Black Refugees who came after the War of 1812?", "expect": "answer", "relevant": ["bccns-002"]},
+    {"q": "Are there photographs of Africville?", "expect": "answer", "relevant": ["bccns-015"]},
+    {"q": "Where can I see the Book of Negroes?", "expect": "answer", "relevant": ["bccns-005"]},
+    {"q": "What was Viola Desmond's favourite song?", "expect": "abstain", "relevant": []},
+    {"q": "How many people lived in Africville in 1964?", "expect": "abstain", "relevant": []},
+    {"q": "Who was the pastor of the church in Africville?", "expect": "abstain", "relevant": []},
+    {"q": "What compensation did Africville residents receive?", "expect": "abstain", "relevant": []},
+    {"q": "What was the name of the ship that carried the Birchtown settlers?", "expect": "abstain", "relevant": []},
+    {"q": "Which records describe Black communities in Alberta?", "expect": "abstain", "relevant": []}
+  ]
+}

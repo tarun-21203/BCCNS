@@ -1,0 +1,100 @@
+[
+  {
+    "coordinates_approximate": true,
+    "digitized_count": 3,
+    "indexed_count": 6,
+    "latitude": 44.67,
+    "longitude": -63.62,
+    "name": "Africville",
+    "source": "Government of Nova Scotia, African Nova Scotian Family Names by Region (https://data.novascotia.ca/datasets/kbzq-tfz7)"
+  },
+  {
+    "coordinates_approximate": true,
+    "digitized_count": 3,
+    "indexed_count": 3,
+    "latitude": 44.71,
+    "longitude": -63.44,
+    "name": "Preston",
+    "source": "Government of Nova Scotia, African Nova Scotian Family Names by Region (https://data.novascotia.ca/datasets/kbzq-tfz7)"
+  },
+  {
+    "coordinates_approximate": true,
+    "digitized_count": 3,
+    "indexed_count": 5,
+    "latitude": 43.75,
+    "longitude": -65.37,
+    "name": "Birchtown",
+    "source": "Government of Nova Scotia, African Nova Scotian Family Names by Region (https://data.novascotia.ca/datasets/kbzq-tfz7)"
+  },
+  {
+    "coordinates_approximate": true,
+    "digitized_count": 1,
+    "indexed_count": 2,
+    "latitude": 44.7,
+    "longitude": -63.47,
+    "name": "Cherry Brook",
+    "source": "Government of Nova Scotia, African Nova Scotian Family Names by Region (https://data.novascotia.ca/datasets/kbzq-tfz7)"
+  },
+  {
+    "coordinates_approximate": true,
+    "digitized_count": 1,
+    "indexed_count": 1,
+    "latitude": 44.7,
+    "longitude": -63.78,
+    "name": "Hammonds Plains",
+    "source": "Government of Nova Scotia, African Nova Scotian Family Names by Region (https://data.novascotia.ca/datasets/kbzq-tfz7)"
+  },
+  {
+    "coordinates_approximate": true,
+    "digitized_count": 2,
+    "indexed_count": 4,
+    "latitude": 43.76,
+    "longitude": -65.32,
+    "name": "Shelburne",
+    "source": "Government of Nova Scotia, African Nova Scotian Family Names by Region (https://data.novascotia.ca/datasets/kbzq-tfz7)"
+  },
+  {
+    "coordinates_approximate": true,
+    "coordinates_source": "Wikidata Q4879672 (https://www.wikidata.org/wiki/Q4879672), CC0",
+    "digitized_count": 0,
+    "indexed_count": 0,
+    "latitude": 44.6386,
+    "longitude": -63.6862,
+    "name": "Beechville",
+    "region": "Halifax Metro",
+    "source": "Government of Nova Scotia, African Nova Scotian Family Names by Region (https://data.novascotia.ca/datasets/kbzq-tfz7)"
+  },
+  {
+    "coordinates_approximate": true,
+    "coordinates_source": "Wikidata Q7990358 (https://www.wikidata.org/wiki/Q7990358), CC0",
+    "digitized_count": 0,
+    "indexed_count": 0,
+    "latitude": 44.4036,
+    "longitude": -65.9441,
+    "name": "Weymouth Falls",
+    "region": "Bay of Fundy and Annapolis Valley",
+    "source": "Government of Nova Scotia, African Nova Scotian Family Names by Region (https://data.novascotia.ca/datasets/kbzq-tfz7)"
+  },
+  {
+    "coordinates_approximate": true,
+    "coordinates_source": "Wikidata Q6551298 (https://www.wikidata.org/wiki/Q6551298), CC0",
+    "digitized_count": 0,
+    "indexed_count": 0,
+    "latitude": 45.5036,
+    "longitude": -61.5437,
+    "name": "Lincolnville",
+    "region": "Eastern Shore",
+    "source": "Government of Nova Scotia, African Nova Scotian Family Names by Region (https://data.novascotia.ca/datasets/kbzq-tfz7)"
+  },
+  {
+    "coordinates_approximate": true,
+    "coordinates_source": "Wikidata Q7996734 (https://www.wikidata.org/wiki/Q7996734), CC0",
+    "digitized_count": 0,
+    "indexed_count": 0,
+    "latitude": 46.1553,
+    "longitude": -60.1829,
+    "name": "Whitney Pier",
+    "region": "Cape Breton Island",
+    "source": "Government of Nova Scotia, African Nova Scotian Family Names by Region (https://data.novascotia.ca/datasets/kbzq-tfz7)"
+  }
+]

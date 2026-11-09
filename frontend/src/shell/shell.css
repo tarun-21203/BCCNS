@@ -1,0 +1,17 @@
+/* Shell-only styles (Member 5). Module styles live in their own folders. */
+.app { min-height: 100vh; display: flex; flex-direction: column; }
+.app > main { flex: 1; width: 100%; }
+/* Pages other than Search sit in a centred container; Search pages manage their own width. */
+.app > main > .tv,
+.app > main > .sm,
+.app > main > .placeholder { max-width: 1100px; margin: 0 auto; padding: 28px 32px 60px; }
+@media (max-width: 899px) {
+  .app > main > .tv,
+  .app > main > .sm,
+  .app > main > .placeholder { padding: 20px 16px 48px; }
+}
+.shell-footer {
+  border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem;
+  padding: 12px 16px; text-align: center;
+}
+.placeholder code { white-space: normal; }

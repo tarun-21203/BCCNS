@@ -1,0 +1,68 @@
+{
+  "mappings": [
+    {
+      "historical_terms": [
+        "Book of Negroes",
+        "Loyalist"
+      ],
+      "modern_term": "Black Loyalist",
+      "rationale": "Current term for people who arrived in Nova Scotia after the American Revolution and were recorded in the Book of Negroes and related registers.",
+      "context_note": "'Book of Negroes' is the historical title of the 1783 register and is kept so the record can be found. The word is outdated and offensive today; THREADS uses it only to match the source's own title."
+    },
+    {
+      "historical_terms": [
+        "Black Refugees",
+        "Refugees"
+      ],
+      "modern_term": "Black Refugee",
+      "rationale": "Current term for people who arrived in Nova Scotia at the close of the War of 1812 and were recorded in government settlement documents."
+    },
+    {
+      "historical_terms": [
+        "African Nova Scotian",
+        "Black Nova Scotian"
+      ],
+      "modern_term": "African Nova Scotian",
+      "rationale": "Current term for people of African descent in Nova Scotia and their communities."
+    },
+    {
+      "historical_terms": [
+        "slavery"
+      ],
+      "modern_term": "enslaved person",
+      "rationale": "Use 'enslaved person' rather than a noun that defines a person by enslavement. Historical records may use older wording; that wording is retained in original_terms only."
+    },
+    {
+      "historical_terms": [
+        "No. 2 Construction Battalion"
+      ],
+      "modern_term": "No. 2 Construction Battalion",
+      "rationale": "Unit raised in Nova Scotia during the First World War, recorded in the nominal roll held by Nova Scotia Archives."
+    },
+    {
+      "historical_terms": [
+        "Port Roseway"
+      ],
+      "modern_term": "Shelburne",
+      "rationale": "Shelburne was founded as Port Roseway in 1783. Loyalist-era records, including those for nearby Birchtown, use the earlier name."
+    },
+    {
+      "historical_terms": [
+        "Africville Relocation Project",
+        "relocation"
+      ],
+      "modern_term": "Africville displacement",
+      "rationale": "Many current accounts describe the 1960s removal of Africville residents as displacement or forced removal. Records created at the time, and the fonds that document them, use 'relocation' (for example the Africville Relocation Project).",
+      "context_note": "'Relocation' is the term used by the records' creators. It is kept to match the source wording, not as THREADS' description of events."
+    },
+    {
+      "historical_terms": [
+        "No. 2 Construction Battalion"
+      ],
+      "modern_term": "Black Battalion",
+      "rationale": "'Black Battalion' is the name commonly used today for No. 2 Construction Battalion. Military records use the unit's official name."
+    }
+  ],
+  "note": "Draft for community review. This crosswalk is a small, curated set of search mappings to help users find records catalogued with different or historical terminology. It is not a complete or authoritative community-approved vocabulary. In a real rollout, BCCNS and community members would validate it.",
+  "status": "draft for community review"
+}
