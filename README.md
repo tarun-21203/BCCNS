@@ -1,9 +1,10 @@
-BCCNS
 # THREADS - Black History Discovery Hub
 
 THREADS is a discovery platform designed to make Black history resources across institutions easier to find, explore, and connect.
 
 The platform brings together archival metadata from multiple sources into a unified search experience while keeping original collections with their respective institutions.
+
+**Live demo:** https://bccns.vercel.app
 
 ## Key Features
 
@@ -28,15 +29,19 @@ This proof of concept indexes a small sample of records from Nova Scotia Archive
 
 ## Built With
 
-- **Frontend:** React 18, Vite, React Router, d3-force
+- **Frontend:** React 18, Vite, React Router, Leaflet, d3-force
 - **Backend:** Python, FastAPI
+- **AI:** Groq (`openai/gpt-oss-120b`), with citations checked in code and saved answers as a fallback
 - **Data:** Normalized JSON records, per-source mapping files, SQLite schema
+- **Hosting:** Vercel (static frontend + Python serverless API)
 
 ## Running Locally
 
 - API: see [docs/RUN.md](docs/RUN.md)
 - Frontend: see [frontend/README.md](frontend/README.md)
 - Data model and provenance: see [docs/DATA_CONTRACT.md](docs/DATA_CONTRACT.md)
+- Deployment: see [docs/DEPLOY.md](docs/DEPLOY.md)
+- Demo walkthrough: see [docs/DEMO.md](docs/DEMO.md)
 
 ---
 
