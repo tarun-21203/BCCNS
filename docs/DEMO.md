@@ -2,7 +2,10 @@
 
 Owner: Member 5. One researcher journey through every module. About 5 minutes.
 
-## 1. Start (two terminals, from the repo root)
+**Live site:** https://bccns.vercel.app (deployed from `main`; nothing to start).
+Use the local setup below only as a backup if the network is unreliable.
+
+## 1. Backup: run locally (two terminals, from the repo root)
 
 ```sh
 # API (records + AI)
@@ -25,7 +28,9 @@ to bundled sample data and shows an "Offline sample data" notice.
 - [ ] `node frontend/src/modules/threads/lib/graph.check.mjs` shows no `FAIL`
 - [ ] `node frontend/src/modules/map/lib/coverage.check.mjs` shows no `FAIL`
 - [ ] `cd ai && python -m pytest -q tests` passes
-- [ ] `http://localhost:8000/ai/health` responds
+- [ ] https://bccns.vercel.app/api/health returns `{"status":"ok"}`
+- [ ] https://bccns.vercel.app/api/ai/health shows `records_indexed: 13`
+- [ ] Ask one demo question on the live site to confirm Groq answers
 - [ ] **Click the two LAC record links by hand** (`bccns-005`, `bccns-006`).
       They sit behind a Cloudflare check that blocks scripts, so they can't be
       verified automatically. All other record links returned 200 on Nov 8.
